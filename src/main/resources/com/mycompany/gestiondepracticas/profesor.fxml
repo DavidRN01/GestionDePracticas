@@ -47,7 +47,7 @@
          <children>
             <ImageView fitHeight="79.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../logo_cesur.png" />
+                  <Image url="@../../../imagenes/logo_cesur.png" />
                </image>
             </ImageView>
          </children>
@@ -67,7 +67,7 @@
                <children>
                   <ImageView fitHeight="95.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../user.png" />
+                        <Image url="@../../../imagenes/user.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" text="Nombre" />
