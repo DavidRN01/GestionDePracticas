@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,11 +12,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="565.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="645.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane>
          <top>
-            <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="179.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="201.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Nombre: " />
                   <Label text="Apellidos" />
@@ -29,6 +28,8 @@
                   <Label text="Tutor asignado:" />
                   <Label text="Horas totales Dual: " />
                   <Label text="Horas totales FCT:" />
+                  <Label text="Horas restantes Dual:" />
+                  <Label text="Horas restantes FCT:" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -52,7 +53,7 @@
       </BorderPane>
    </center>
    <top>
-      <Pane minHeight="82.0" prefHeight="82.0" prefWidth="786.0" style="-fx-background-color: #0274BE;" BorderPane.alignment="CENTER">
+      <Pane minHeight="82.0" prefHeight="82.0" prefWidth="786.0" styleClass="colorFondoPaneSuperior" stylesheets="@../../../styles/estilos.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="79.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,42 +64,40 @@
       </Pane>
    </top>
    <left>
-      <Pane prefHeight="443.0" prefWidth="156.0" style="-fx-background-color: #B5D8F0;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="479.0" prefWidth="156.0">
+      <BorderPane styleClass="colorFondoPaneIzquierdo" stylesheets="@../../../styles/estilos.css">
+         <center>
+            <VBox alignment="TOP_CENTER" spacing="30.0">
                <children>
-                  <Pane prefHeight="135.0" prefWidth="156.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="137.0" prefWidth="151.0">
-                           <children>
-                              <ImageView fitHeight="95.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../user.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" text="Nombre" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="350.0" prefWidth="156.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="350.0" prefWidth="158.0" spacing="20.0">
-                           <children>
-                              <Hyperlink styleClass="enlace" stylesheets="@../../../styles/estilos.css" text="- Añadir tarea" />
-                              <Hyperlink styleClass="enlace" stylesheets="@../../../styles/estilos.css" text="- Editar tarea" />
-                              <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Salir">
-                                 <VBox.margin>
-                                    <Insets top="150.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                  </Pane>
+                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir tarea" />
+                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Editar tarea" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+         </center>
+         <bottom>
+            <Button alignment="CENTER" mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+         <top>
+            <VBox alignment="CENTER" prefHeight="137.0" prefWidth="151.0">
+               <children>
+                  <ImageView fitHeight="95.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../user.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" text="Nombre" />
                </children>
             </VBox>
-         </children>
-      </Pane>
+         </top>
+      </BorderPane>
    </left>
 </BorderPane>

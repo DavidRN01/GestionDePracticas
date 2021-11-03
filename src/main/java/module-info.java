@@ -7,7 +7,7 @@ module com.mycompany.gestiondepracticas {
     requires java.sql;
     requires java.persistence;
     
-    opens com.mycompany.gestiondepracticas to javafx.fxml;
+    opens com.mycompany.gestiondepracticas to javafx.fxml, org.hibernate.orm.core, java.sql;
     opens models;
     exports com.mycompany.gestiondepracticas;
 }
