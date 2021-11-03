@@ -7,15 +7,20 @@ package com.mycompany.gestiondepracticas;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Spinner;
 /**
  * FXML Controller class
  *
  * @author DavidRamosNavas
  */
-public class EditarTareaController implements Initializable {
+public class NuevaTareaController implements Initializable {
 
+
+    @FXML
+    private Spinner<?> horas;
     /**
      * Initializes the controller class.
      */

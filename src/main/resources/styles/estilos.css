@@ -8,7 +8,7 @@
 .btnSalir {
     -fx-background-color:#1a3ba2;
     -fx-text-fill:white;
-    -fx-padding:5px 25px;
+    -fx-padding:5px 20px;
 }
 
 .colorFondoPaneIzquierdo {
@@ -17,4 +17,8 @@
 
 .colorFondoPaneSuperior {
     -fx-background-color:#0274BE;
+}
+
+.colorTarea {
+    -fx-background-color:#e3f2fd;
 }
