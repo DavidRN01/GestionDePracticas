@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -22,9 +23,9 @@ public class Actividades implements Serializable {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     private Long id;
-    private Date fecha;
+    private LocalDate fecha;
     private String tipo_practica;
-    private int total_horas;
+    private double total_horas;
     private String actividad_realizada;
     private String observaciones;
     private Date fecha_creacion;
@@ -36,7 +37,7 @@ public class Actividades implements Serializable {
     public Actividades() {
     }
 
-    public Actividades(Long id, Date fecha, String tipo_practica, int total_horas, String actividad_realizada, String observaciones, Date fecha_creacion, Alumno alumno) {
+    public Actividades(Long id, LocalDate fecha, String tipo_practica, double total_horas, String actividad_realizada, String observaciones, Date fecha_creacion, Alumno alumno) {
         this.id = id;
         this.fecha = fecha;
         this.tipo_practica = tipo_practica;
@@ -55,11 +56,11 @@ public class Actividades implements Serializable {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -71,11 +72,11 @@ public class Actividades implements Serializable {
         this.tipo_practica = tipo_practica;
     }
 
-    public int getTotal_horas() {
+    public double getTotal_horas() {
         return total_horas;
     }
 
-    public void setTotal_horas(int total_horas) {
+    public void setTotal_horas(double total_horas) {
         this.total_horas = total_horas;
     }
 

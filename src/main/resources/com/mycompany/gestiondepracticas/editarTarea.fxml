@@ -14,19 +14,19 @@
 <VBox prefHeight="409.0" prefWidth="652.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.EditarTareaController">
    <children>
       <Label text="Actividad realizada: " />
-      <TextField promptText="Nombre de la tarea" />
+      <TextField fx:id="txtNombreTarea" promptText="Nombre de la tarea" />
       <Label text="Observaciones:">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <TextArea prefHeight="93.0" prefWidth="652.0" />
+      <TextArea fx:id="txtObservaciones" prefHeight="93.0" prefWidth="652.0" />
       <Label text="Tipo de práctica:">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <ChoiceBox disable="true" prefWidth="150.0" />
+      <ChoiceBox fx:id="choiceTipo" disable="true" prefWidth="150.0" />
       <Label text="Horas totales realizadas:">
          <VBox.margin>
             <Insets top="20.0" />
@@ -38,7 +38,7 @@
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <DatePicker disable="true" />
+      <DatePicker fx:id="dateFecha" disable="true" />
       <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="32.0" prefWidth="612.0">
          <children>
             <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />

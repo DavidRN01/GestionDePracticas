@@ -1,11 +1,14 @@
 package models;
 
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import models.Alumno;
 
 /**
  *
@@ -25,6 +28,9 @@ public class Profesor {
     private String email;
     private Date fecha_creacion;
 
+    @OneToMany
+    private List<Alumno> alumnos;
+    
     public Profesor() {
     }
 
@@ -85,6 +91,16 @@ public class Profesor {
         this.fecha_creacion = fecha_creacion;
     }
 
+    public List<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(List<Alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Profesor{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", email=" + email + ", fecha_creacion=" + fecha_creacion + '}';

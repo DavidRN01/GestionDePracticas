@@ -1,0 +1,24 @@
+
+.boton {
+    -fx-background-color:cadetblue;
+    -fx-text-fill:white;
+    -fx-padding:5px 15px;
+}
+
+.btnSalir {
+    -fx-background-color:#1a3ba2;
+    -fx-text-fill:white;
+    -fx-padding:5px 20px;
+}
+
+.colorFondoPaneIzquierdo {
+    -fx-background-color:#B5D8F0;
+}
+
+.colorFondoPaneSuperior {
+    -fx-background-color:#0274BE;
+}
+
+.colorTarea {
+    -fx-background-color:#e3f2fd;
+}
