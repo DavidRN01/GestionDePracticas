@@ -11,38 +11,38 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="409.0" prefWidth="652.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.NuevaTareaController">
+<VBox prefHeight="409.0" prefWidth="652.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.EditarTareaController">
    <children>
       <Label text="Actividad realizada: " />
-      <TextField fx:id="txtNombre" promptText="Nombre de la tarea" />
+      <TextField promptText="Nombre de la tarea" />
       <Label text="Observaciones:">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <TextArea fx:id="txtObservaciones" prefHeight="93.0" prefWidth="652.0" />
+      <TextArea prefHeight="93.0" prefWidth="652.0" />
       <Label text="Tipo de práctica:">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <ChoiceBox fx:id="chooser" prefWidth="150.0" />
+      <ChoiceBox disable="true" prefWidth="150.0" />
       <Label text="Horas totales realizadas:">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <Spinner fx:id="horas" />
+      <Spinner fx:id="horas" disable="true" />
       <Label text="Fecha:">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <DatePicker fx:id="datePicker" />
+      <DatePicker disable="true" />
       <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="32.0" prefWidth="612.0">
          <children>
-            <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Cancelar" />
+            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />
+            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Borrar" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import models.Actividades;
 import models.Empresa;
 
 /**
@@ -42,6 +43,9 @@ public class Alumno implements Serializable {
     @OneToOne
     @JoinColumn(name="empresa")
     private Empresa empresaAsignada;
+    @OneToOne
+    @JoinColumn(name="tutor")
+    private Profesor profesor;
     @OneToMany( mappedBy="alumno", fetch=FetchType.EAGER)
     private List<Actividades> actividades;
 
@@ -168,6 +172,16 @@ public class Alumno implements Serializable {
         this.fecha_creacion = fecha_creacion;
     }
 
+    public List<Actividades> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividades> actividades) {
+        this.actividades = actividades;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", fecha_nacimiento=" + fecha_nacimiento + ", email=" + email + ", telefono=" + telefono + ", tutor=" + tutor + ", horas_dual=" + horas_dual + ", horas_fct=" + horas_fct + ", observaciones=" + observaciones + ", dni=" + dni + ", fecha_creacion=" + fecha_creacion + ", empresaAsignada=" + empresaAsignada + ", actividades=" + actividades + '}';

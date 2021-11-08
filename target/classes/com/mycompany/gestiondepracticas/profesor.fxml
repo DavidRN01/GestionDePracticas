@@ -12,24 +12,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="893.0" prefWidth="1232.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.AlumnoController">
+<BorderPane prefHeight="565.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.ProfesorController">
    <center>
       <BorderPane>
          <top>
-            <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="201.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="117.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Nombre: " />
                   <Label text="Apellidos:" />
-                  <Label text="DNI:" />
-                  <Label text="Fecha de nacimiento:" />
                   <Label text="Email:" />
-                  <Label text="Teléfono:" />
-                  <Label text="Empresa:" />
-                  <Label text="Tutor asignado:" />
-                  <Label text="Horas totales Dual: " />
-                  <Label text="Horas totales FCT:" />
-                  <Label text="Horas restantes Dual:" />
-                  <Label text="Horas restantes FCT:" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -37,13 +28,12 @@
             </FlowPane>
          </top>
          <center>
-            <TableView fx:id="tabla" minWidth="-Infinity" BorderPane.alignment="CENTER">
+            <TableView prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="colFecha" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" text="Fecha" />
-                <TableColumn fx:id="colTipo" maxWidth="92.0" minWidth="40.0" prefWidth="92.0" text="Tipo" />
-                  <TableColumn fx:id="colHoras" maxWidth="161.0" minWidth="100.0" prefWidth="133.0" text="Horas Totales" />
-                  <TableColumn fx:id="colActividad" minWidth="100.0" prefWidth="163.0" text="Actividad" />
-                  <TableColumn fx:id="colObservaciones" minWidth="100.0" prefWidth="231.0" text="Observaciones" />
+                <TableColumn maxWidth="112.0" minWidth="67.0" prefWidth="112.0" text="DNI" />
+                <TableColumn maxWidth="160.0" minWidth="62.0" prefWidth="128.0" text="Nombre" />
+                  <TableColumn maxWidth="403.0" minWidth="89.0" prefWidth="225.0" text="Apellidos" />
+                  <TableColumn prefWidth="194.0" text="Email" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -65,20 +55,6 @@
    </top>
    <left>
       <BorderPane styleClass="colorFondoPaneIzquierdo" stylesheets="@../../../styles/estilos.css">
-         <center>
-            <VBox alignment="TOP_CENTER" spacing="30.0">
-               <children>
-                  <Button fx:id="btnNuevaTarea" mnemonicParsing="false" onAction="#nuevaTarea" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir tarea" />
-                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Editar tarea" />
-               </children>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-            </VBox>
-         </center>
          <bottom>
             <Button fx:id="btnSalir" alignment="CENTER" mnemonicParsing="false" onAction="#salir" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
                <BorderPane.margin>
@@ -98,6 +74,21 @@
                </children>
             </VBox>
          </top>
+         <center>
+            <VBox alignment="TOP_CENTER" spacing="30.0">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir alumno" />
+                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Asignar empresa" />
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="141.0" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Gestionar empresas" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+         </center>
       </BorderPane>
    </left>
 </BorderPane>
