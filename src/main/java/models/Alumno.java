@@ -167,6 +167,14 @@ public class Alumno implements Serializable {
     public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
+    
+    public List<Actividades> getActividades() {
+        return actividades;
+    }
+
+    public void setTareas(List<Actividades> actividades) {
+        this.actividades = actividades;
+    }
 
     @Override
     public String toString() {
