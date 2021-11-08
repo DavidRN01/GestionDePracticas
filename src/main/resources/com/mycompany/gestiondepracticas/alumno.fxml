@@ -37,7 +37,7 @@
             </FlowPane>
          </top>
          <center>
-            <TableView prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
+            <TableView onMouseClicked="#seleccionar" prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn maxWidth="67.0" minWidth="67.0" prefWidth="67.0" text="Fecha" />
                 <TableColumn maxWidth="62.0" minWidth="62.0" prefWidth="62.0" text="Tipo" />
