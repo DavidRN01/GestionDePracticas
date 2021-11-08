@@ -1,0 +1,17 @@
+models\Profesor.class
+com\mycompany\gestiondepracticas\PrimaryController.class
+com\mycompany\gestiondepracticas\HibernateUtil.class
+com\mycompany\gestiondepracticas\EditarAlumnoController.class
+com\mycompany\gestiondepracticas\FichaAlumnoController.class
+module-info.class
+models\Empresa.class
+models\Actividades.class
+com\mycompany\gestiondepracticas\SessionData.class
+models\Alumno.class
+com\mycompany\gestiondepracticas\GestionEmpresasController.class
+com\mycompany\gestiondepracticas\NuevoAlumnoController.class
+com\mycompany\gestiondepracticas\AlumnoController.class
+com\mycompany\gestiondepracticas\EditarTareaController.class
+com\mycompany\gestiondepracticas\App.class
+com\mycompany\gestiondepracticas\ProfesorController.class
+com\mycompany\gestiondepracticas\NuevaTareaController.class

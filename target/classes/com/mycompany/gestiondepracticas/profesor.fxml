@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="565.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.ProfesorController">
+   <center>
+      <BorderPane>
+         <top>
+            <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="117.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Nombre: " />
+                  <Label text="Apellidos:" />
+                  <Label text="Email:" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </FlowPane>
+         </top>
+         <center>
+            <TableView prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn maxWidth="112.0" minWidth="67.0" prefWidth="112.0" text="DNI" />
+                <TableColumn maxWidth="160.0" minWidth="62.0" prefWidth="128.0" text="Nombre" />
+                  <TableColumn maxWidth="403.0" minWidth="89.0" prefWidth="225.0" text="Apellidos" />
+                  <TableColumn prefWidth="194.0" text="Email" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </center>
+      </BorderPane>
+   </center>
+   <top>
+      <Pane minHeight="82.0" prefHeight="82.0" prefWidth="786.0" styleClass="colorFondoPaneSuperior" stylesheets="@../../../styles/estilos.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="79.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/logo_cesur.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <BorderPane styleClass="colorFondoPaneIzquierdo" stylesheets="@../../../styles/estilos.css">
+         <bottom>
+            <Button fx:id="btnSalir" alignment="CENTER" mnemonicParsing="false" onAction="#salir" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+         <top>
+            <VBox alignment="CENTER" prefHeight="137.0" prefWidth="151.0">
+               <children>
+                  <ImageView fitHeight="95.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imagenes/user.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" text="Nombre" />
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox alignment="TOP_CENTER" spacing="30.0">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir alumno" />
+                  <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Asignar empresa" />
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="141.0" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Gestionar empresas" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </left>
+</BorderPane>
