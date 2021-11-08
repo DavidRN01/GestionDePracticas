@@ -80,7 +80,7 @@
             </VBox>
          </center>
          <bottom>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
+            <Button fx:id="btnSalir" alignment="CENTER" mnemonicParsing="false" onAction="#salir" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="20.0" />
                </BorderPane.margin>

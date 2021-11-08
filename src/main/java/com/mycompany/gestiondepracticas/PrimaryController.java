@@ -11,6 +11,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import models.Alumno;
+import models.Profesor;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -29,13 +30,13 @@ public class PrimaryController {
     private void login(ActionEvent event) {
         
         Session s = HibernateUtil.getSessionFactory().openSession();
-        Query q = s.createQuery("FROM Alumno a WHERE a.email=:correo AND a.contraseña=:pass ");
-        q.setParameter("correo", txtEmail.getText());
-        q.setParameter("pass", txtPassword.getText());
+        Query qa = s.createQuery("FROM Alumno a WHERE a.email=:correo AND a.contraseña=:pass ");
+        qa.setParameter("correo", txtEmail.getText());
+        qa.setParameter("pass", txtPassword.getText());
         
-        if(q.list().size()>0){
+        if(qa.list().size()>0){
             
-            Alumno a = (Alumno) q.list().get(0);
+            Alumno a = (Alumno) qa.list().get(0);
             
             SessionData.setAlumnoActual(a);
             
@@ -45,6 +46,33 @@ public class PrimaryController {
                 Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+        } else {
+            
+            Query qp = s.createQuery("FROM Profesor p WHERE p.email=:correo AND p.contraseña=:pass ");
+            qp.setParameter("correo", txtEmail.getText());
+            qp.setParameter("pass", txtPassword.getText());
+            
+            if(qp.list().size()>0){
+            
+                Profesor p = (Profesor) qp.list().get(0);
+
+                SessionData.setProfesorActual(p);
+
+                try {
+                    App.setRoot("profesor");
+                } catch (IOException ex) {
+                    Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            } else {
+                
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Error");
+                alerta.setContentText("El correo "+txtEmail.getText() 
+                    + " no existe o la contraseña es incorrecta");
+                alerta.showAndWait();
+                
+            }
         }
         
     }

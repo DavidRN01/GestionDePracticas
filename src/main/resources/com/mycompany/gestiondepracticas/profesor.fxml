@@ -56,7 +56,7 @@
    <left>
       <BorderPane styleClass="colorFondoPaneIzquierdo" stylesheets="@../../../styles/estilos.css">
          <bottom>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
+            <Button fx:id="btnSalir" alignment="CENTER" mnemonicParsing="false" onAction="#salir" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="20.0" />
                </BorderPane.margin>
@@ -79,7 +79,7 @@
                <children>
                   <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir alumno" />
                   <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Asignar empresa" />
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="132.0" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Gestionar empresas" />
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="141.0" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Gestionar empresas" />
                </children>
                <BorderPane.margin>
                   <Insets />
