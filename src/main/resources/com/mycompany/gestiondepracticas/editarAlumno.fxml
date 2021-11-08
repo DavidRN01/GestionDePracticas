@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<VBox prefHeight="604.0" prefWidth="646.0" spacing="10.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.NuevoAlumnoController">
+
+<VBox prefHeight="604.0" prefWidth="646.0" spacing="10.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.EditarAlumnoController">
    <children>
       <FlowPane>
          <children>
@@ -51,7 +52,7 @@
       <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="32.0" prefWidth="612.0">
          <children>
             <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />
-            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Cancelar" />
+            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Borrar" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
