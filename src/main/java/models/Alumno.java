@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -37,13 +38,14 @@ public class Alumno implements Serializable {
     private String dni;
     private Date fecha_creacion;
     
+    @OneToOne( mappedBy="alumno", fetch=FetchType.EAGER)
     @OneToMany( mappedBy="alumno", fetch=FetchType.EAGER)
     private List<Actividades> actividades;
 
     public Alumno() {
     }
 
-    public Alumno(Long id, String nombre, String apellidos, String contraseña, Date fecha_nacimiento, String email, int telefono, int empresa, int tutor, int horas_dual, int horas_fct, String observaciones, String dni, Date fecha_creacion) {
+    public Alumno(Long id, String nombre, String apellidos, String contraseña, Date fecha_nacimiento, String email, int telefono, int tutor, int horas_dual, int horas_fct, String observaciones, String dni, Date fecha_creacion) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -51,7 +53,6 @@ public class Alumno implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
         this.email = email;
         this.telefono = telefono;
-        this.empresa = empresa;
         this.tutor = tutor;
         this.horas_dual = horas_dual;
         this.horas_fct = horas_fct;
