@@ -33,7 +33,6 @@ public class Alumno implements Serializable {
     private Date fecha_nacimiento;
     private String email;
     private int telefono;
-    private int tutor;
     private int horas_dual;
     private int horas_fct;
     private String observaciones;
@@ -60,7 +59,6 @@ public class Alumno implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
         this.email = email;
         this.telefono = telefono;
-        this.tutor = tutor;
         this.horas_dual = horas_dual;
         this.horas_fct = horas_fct;
         this.observaciones = observaciones;
@@ -124,14 +122,6 @@ public class Alumno implements Serializable {
         this.telefono = telefono;
     }
     
-    public int getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(int tutor) {
-        this.tutor = tutor;
-    }
-
     public int getHoras_dual() {
         return horas_dual;
     }
@@ -182,8 +172,10 @@ public class Alumno implements Serializable {
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", fecha_nacimiento=" + fecha_nacimiento + ", email=" + email + ", telefono=" + telefono + ", tutor=" + tutor + ", horas_dual=" + horas_dual + ", horas_fct=" + horas_fct + ", observaciones=" + observaciones + ", dni=" + dni + ", fecha_creacion=" + fecha_creacion + ", empresaAsignada=" + empresaAsignada + ", actividades=" + actividades + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", fecha_nacimiento=" + fecha_nacimiento + ", email=" + email + ", telefono=" + telefono + ", horas_dual=" + horas_dual + ", horas_fct=" + horas_fct + ", observaciones=" + observaciones + ", dni=" + dni + ", fecha_creacion=" + fecha_creacion + ", empresaAsignada=" + empresaAsignada + ", profesor=" + profesor + ", actividades=" + actividades + '}';
     }
+
+    
 
     
     
