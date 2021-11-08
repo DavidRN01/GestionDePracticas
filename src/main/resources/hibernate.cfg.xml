@@ -3,12 +3,15 @@
 <hibernate-configuration>
    <session-factory>
      <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-     <property name="connection.url">jdbc:mysql://localhost:3306/accesso?zeroDateTimeBehavior=CONVERT_TO_NULL</property>
+     <property name="connection.url">jdbc:mysql://localhost:3306/dual?zeroDateTimeBehavior=CONVERT_TO_NULL</property>
      <property name="connection.username">root</property>
      <property name="connection.password"></property>
      <property name="hibernate.show_sql">true</property>
 
      <mapping class="models.Alumno"/>
+     <mapping class="models.Actividades"/>
+     <mapping class="models.Empresa"/>
+     <mapping class="models.Profesor"/>
 
    </session-factory>
 </hibernate-configuration>

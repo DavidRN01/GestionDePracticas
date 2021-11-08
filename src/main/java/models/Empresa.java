@@ -1,10 +1,13 @@
 package models;
 
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +28,9 @@ public class Empresa {
     private String observaciones;
     private Date fecha_creacion;
 
+    @OneToMany
+    private List<Alumno> alumnos;
+    
     public Empresa() {
     }
 

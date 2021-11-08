@@ -31,7 +31,6 @@ public class Actividades implements Serializable {
     
     @ManyToOne
     @JoinColumn(name="alumno_id")
-    
     private Alumno alumno;
 
     public Actividades() {

@@ -8,9 +8,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import models.Empresa;
 
 /**
  *
@@ -30,7 +32,6 @@ public class Alumno implements Serializable {
     private Date fecha_nacimiento;
     private String email;
     private int telefono;
-    private int empresa;
     private int tutor;
     private int horas_dual;
     private int horas_fct;
@@ -38,7 +39,9 @@ public class Alumno implements Serializable {
     private String dni;
     private Date fecha_creacion;
     
-    @OneToOne( mappedBy="alumno", fetch=FetchType.EAGER)
+    @OneToOne
+    @JoinColumn(name="empresa")
+    private Empresa empresaAsignada;
     @OneToMany( mappedBy="alumno", fetch=FetchType.EAGER)
     private List<Actividades> actividades;
 
@@ -116,15 +119,7 @@ public class Alumno implements Serializable {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
-    public int getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(int empresa) {
-        this.empresa = empresa;
-    }
-
+    
     public int getTutor() {
         return tutor;
     }
@@ -175,7 +170,9 @@ public class Alumno implements Serializable {
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", fecha_nacimiento=" + fecha_nacimiento + ", email=" + email + ", telefono=" + telefono + ", empresa=" + empresa + ", tutor=" + tutor + ", horas_dual=" + horas_dual + ", horas_fct=" + horas_fct + ", observaciones=" + observaciones + ", dni=" + dni + ", fecha_creacion=" + fecha_creacion + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", fecha_nacimiento=" + fecha_nacimiento + ", email=" + email + ", telefono=" + telefono + ", tutor=" + tutor + ", horas_dual=" + horas_dual + ", horas_fct=" + horas_fct + ", observaciones=" + observaciones + ", dni=" + dni + ", fecha_creacion=" + fecha_creacion + ", empresaAsignada=" + empresaAsignada + ", actividades=" + actividades + '}';
     }
+
+    
     
 }
