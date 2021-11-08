@@ -14,7 +14,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
-import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import models.Actividades;
@@ -31,7 +30,7 @@ public class EditarTareaController implements Initializable {
     @FXML
     private TextArea txtObservaciones;
     @FXML
-    private ChoiceBox<?> choiceTipo;
+    private ChoiceBox<String> choiceTipo;
     @FXML
     private DatePicker dateFecha;
 
@@ -45,7 +44,7 @@ public class EditarTareaController implements Initializable {
         if (a != null) {
             txtNombreTarea.setText(a.getActividad_realizada());
             txtObservaciones.setText(a.getObservaciones());
-            //choiceTipo.setValue(a.getTipo_practica());
+            choiceTipo.setValue(a.getTipo_practica());
             SpinnerValueFactory svf = new DoubleSpinnerValueFactory(0,24,a.getTotal_horas(),0.25);
             horas.setValueFactory(svf);
      
