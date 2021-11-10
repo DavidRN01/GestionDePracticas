@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,6 +44,30 @@ public class AlumnoController implements Initializable {
     private TableColumn<Actividades, String> colActividad;
     @FXML
     private TableColumn<Actividades, String> colObservaciones;
+    @FXML
+    private Label lblNombre;
+    @FXML
+    private Label lblApellidos;
+    @FXML
+    private Label lblDNI;
+    @FXML
+    private Label lblNacimiento;
+    @FXML
+    private Label lblEmail;
+    @FXML
+    private Label lblTelefono;
+    @FXML
+    private Label lblEmpresa;
+    @FXML
+    private Label lblProfesor;
+    @FXML
+    private Label lblHorasDual;
+    @FXML
+    private Label lblHorasFCT;
+    @FXML
+    private Label lblRestantesDual;
+    @FXML
+    private Label lblRestantesFCT;
 
     /**
      * Initializes the controller class.
@@ -68,6 +93,18 @@ public class AlumnoController implements Initializable {
         
         //Añadimos el contenido
         contenido.addAll(a.getActividades());
+        
+        //Rellenos los datos de la ficha del alumno
+        lblNombre.setText("Nombre: "+a.getNombre());
+        lblApellidos.setText("Apellidos: "+a.getApellidos());
+        lblDNI.setText("DNI: "+a.getDni());
+        lblNacimiento.setText("Fecha de nacimiento: "+a.getFecha_nacimiento());
+        lblEmail.setText("Email: "+a.getEmail());
+        lblTelefono.setText("Teléfono: "+a.getTelefono());
+        lblEmpresa.setText("Empresa: "+a.getEmpresaAsignada().getNombre());
+        lblProfesor.setText("Tutor asignado: "+a.getProfesor().getNombre());
+        lblHorasDual.setText("Horas totales Dual: "+a.getHoras_dual());
+        lblHorasFCT.setText("Horas totales FCT: "+a.getHoras_fct());
         
     }    
 

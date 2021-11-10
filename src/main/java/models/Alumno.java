@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import models.Actividades;
 import models.Empresa;
+import models.Profesor;
 
 /**
  *
@@ -170,6 +171,24 @@ public class Alumno implements Serializable {
         this.actividades = actividades;
     }
 
+    public Empresa getEmpresaAsignada() {
+        return empresaAsignada;
+    }
+
+    public void setEmpresaAsignada(Empresa empresaAsignada) {
+        this.empresaAsignada = empresaAsignada;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", contrase\u00f1a=" + contraseña + ", fecha_nacimiento=" + fecha_nacimiento + ", email=" + email + ", telefono=" + telefono + ", horas_dual=" + horas_dual + ", horas_fct=" + horas_fct + ", observaciones=" + observaciones + ", dni=" + dni + ", fecha_creacion=" + fecha_creacion + ", empresaAsignada=" + empresaAsignada + ", profesor=" + profesor + ", actividades=" + actividades + '}';

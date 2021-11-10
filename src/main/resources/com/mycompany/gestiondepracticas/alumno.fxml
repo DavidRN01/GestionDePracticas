@@ -18,18 +18,18 @@
             <top>
                 <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="201.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label text="Nombre: " />
-                        <Label text="Apellidos:" />
-                        <Label text="DNI:" />
-                        <Label text="Fecha de nacimiento:" />
-                        <Label text="Email:" />
-                        <Label text="Teléfono:" />
-                        <Label text="Empresa:" />
-                        <Label text="Tutor asignado:" />
-                        <Label text="Horas totales Dual: " />
-                        <Label text="Horas totales FCT:" />
-                        <Label text="Horas restantes Dual:" />
-                        <Label text="Horas restantes FCT:" />
+                        <Label fx:id="lblNombre" text="Nombre: " />
+                        <Label fx:id="lblApellidos" text="Apellidos:" />
+                        <Label fx:id="lblDNI" text="DNI:" />
+                        <Label fx:id="lblNacimiento" text="Fecha de nacimiento:" />
+                        <Label fx:id="lblEmail" text="Email:" />
+                        <Label fx:id="lblTelefono" text="Teléfono:" />
+                        <Label fx:id="lblEmpresa" text="Empresa:" />
+                        <Label fx:id="lblProfesor" text="Tutor asignado:" />
+                        <Label fx:id="lblHorasDual" text="Horas totales Dual: " />
+                        <Label fx:id="lblHorasFCT" text="Horas totales FCT:" />
+                        <Label fx:id="lblRestantesDual" text="Horas restantes Dual:" />
+                        <Label fx:id="lblRestantesFCT" text="Horas restantes FCT:" />
                     </children>
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -69,7 +69,6 @@
                 <VBox alignment="TOP_CENTER" spacing="30.0">
                     <children>
                         <Button fx:id="btnNuevaTarea" mnemonicParsing="false" onAction="#nuevaTarea" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir tarea" />
-                        <Button mnemonicParsing="false" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Editar tarea" />
                     </children>
                     <BorderPane.margin>
                         <Insets />
