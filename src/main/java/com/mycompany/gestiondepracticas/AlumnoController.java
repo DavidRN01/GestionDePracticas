@@ -2,6 +2,7 @@ package com.mycompany.gestiondepracticas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,11 +35,11 @@ public class AlumnoController implements Initializable {
     @FXML
     private TableView<Actividades> tabla;
     @FXML
-    private TableColumn<Actividades, String> colFecha;
+    private TableColumn<Actividades, Date> colFecha;
     @FXML
     private TableColumn<Actividades, String> colTipo;
     @FXML
-    private TableColumn<Actividades, String> colHoras;
+    private TableColumn<Actividades, Double> colHoras;
     @FXML
     private TableColumn<Actividades, String> colActividad;
     @FXML
@@ -93,6 +94,17 @@ public class AlumnoController implements Initializable {
         //Añadimos el contenido
         contenido.addAll(a.getActividades());
 
+        //Calculamos las horas que ya lleva realizadas en cada módulo
+        double totalDual=0;
+        double totalFCT=0;
+        for(int i=0; i<a.getActividades().size(); i++) {
+            if(a.getActividades().get(i).getTipo_practica().equals("Dual")) {
+                totalDual += a.getActividades().get(i).getTotal_horas();
+            } else {
+                totalFCT += a.getActividades().get(i).getTotal_horas();
+            }
+        }
+        
         //Rellenos los datos de la ficha del alumno
         lblNombre.setText("Nombre: " + a.getNombre());
         lblApellidos.setText("Apellidos: " + a.getApellidos());
@@ -104,7 +116,10 @@ public class AlumnoController implements Initializable {
         lblProfesor.setText("Tutor asignado: " + a.getProfesor().getNombre());
         lblHorasDual.setText("Horas totales Dual: " + a.getHoras_dual());
         lblHorasFCT.setText("Horas totales FCT: " + a.getHoras_fct());
-
+        lblRestantesDual.setText("Horas restantes Dual: " + (a.getHoras_dual()-totalDual));
+        lblRestantesFCT.setText("Horas restantes FCT: " + (a.getHoras_fct()-totalFCT));
+        
+        
     }
 
     @FXML

@@ -94,6 +94,9 @@
                </children>
             </VBox>
          </top>
+         <center>
+            <Button fx:id="btnEditar" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#editar" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Editar datos" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </left>
 </BorderPane>

@@ -78,7 +78,6 @@
             <VBox alignment="TOP_CENTER" spacing="30.0">
                <children>
                   <Button fx:id="btnAñadir" mnemonicParsing="false" onAction="#añadir" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir alumno" />
-                  <Button fx:id="btnAsignar" mnemonicParsing="false" onAction="#asignar" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Asignar empresa" />
                   <Button fx:id="btnGestionar" mnemonicParsing="false" onAction="#gestionar" prefHeight="27.0" prefWidth="141.0" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Gestionar empresas" />
                </children>
                <BorderPane.margin>

@@ -36,8 +36,6 @@ public class ProfesorController implements Initializable {
     @FXML
     private Button btnAñadir;
     @FXML
-    private Button btnAsignar;
-    @FXML
     private Button btnGestionar;
     @FXML
     private Label labelNombre;
@@ -104,7 +102,7 @@ public class ProfesorController implements Initializable {
         Alumno a = tabla.getSelectionModel().getSelectedItem();
         SessionData.setAlumnoActual(a);
         try {
-            App.setRoot("editarAlumno");
+            App.setRoot("fichaAlumno");
         } catch (IOException ex) {
             Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,15 +117,6 @@ public class ProfesorController implements Initializable {
     private void añadir(ActionEvent event) {
         try {
             App.setRoot("nuevoAlumno");
-        } catch (IOException ex) {
-            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void asignar(ActionEvent event) {
-        try {
-            App.setRoot("fichaAlumno");
         } catch (IOException ex) {
             Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
         }
