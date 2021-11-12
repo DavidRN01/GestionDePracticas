@@ -3,6 +3,7 @@ package com.mycompany.gestiondepracticas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import models.Alumno;
 import models.Profesor;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -64,21 +66,22 @@ public class ProfesorController implements Initializable {
     // https://openjfx.io/javadoc/11/javafx.controls/javafx/scene/control/TableView.html
     public void initialize(URL url, ResourceBundle rb) {
         //Consigo la lista de alumnos del profesor
-        ObservableList<Alumno> contenido = FXCollections.observableArrayList();
-        tabla.setItems(contenido);
+//        ObservableList<Alumno> contenido = FXCollections.observableArrayList();
+//        tabla.setItems(contenido);
         
-        colDNI.setCellValueFactory(new PropertyValueFactory<>("DNI"));
+        colDNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         
         Session s = HibernateUtil.getSessionFactory().openSession();
-        Query qa = s.createQuery("FROM Alumno a WHERE a.email=:correo AND a.contraseña=:pass "); 
 
-        Profesor p = s.load(Profesor.class, SessionData.getProfesorActual().getId() );
-        SessionData.setProfesorActual(p);
+        Query q = s.createQuery("FROM Alumno");
+        ArrayList<Alumno> alumno = (ArrayList<Alumno>) q.list();
+        tabla.getItems().addAll(alumno);
         
-        //contenido.add( );
+        Profesor p = s.load(Profesor.class, SessionData.getProfesorActual().getId());
+        SessionData.setProfesorActual(p);
         
         labelImagen.setText(p.getNombre() );
         labelNombre.setText( "Nombre: "+p.getNombre() );
@@ -86,23 +89,26 @@ public class ProfesorController implements Initializable {
         labelEmail.setText("Email: "+p.getEmail() );
     }    
 
+     private void actualizarTabla() throws HibernateException {
+        
+        //abro una sesion y hago una query para imprimir todos los datos de la carta
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Query q = s.createQuery("FROM Alumno");
+        ArrayList<Alumno> alumno = (ArrayList<Alumno>) q.list();
+        tabla.getItems().addAll(alumno);
+        s.close();
+    }
     
     @FXML
     private void seleccionar(MouseEvent event) {
         Alumno a = tabla.getSelectionModel().getSelectedItem();
-        if (a!=null) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                    alert.setHeaderText(t.getNombre());
-//                    alert.setContentText(t.getPrioridad());
-//                    alert.showAndWait();
-               SessionData.setAlumnoActual(a);
-            try {
-                App.setRoot("editarAlumno");
-            } catch (IOException ex) {
-                Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        SessionData.setAlumnoActual(a);
+        try {
+            App.setRoot("editarAlumno");
+        } catch (IOException ex) {
+            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        }
     
     @FXML
     private void salir(ActionEvent event) {
@@ -111,14 +117,29 @@ public class ProfesorController implements Initializable {
 
     @FXML
     private void añadir(ActionEvent event) {
+        try {
+            App.setRoot("nuevoAlumno");
+        } catch (IOException ex) {
+            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void asignar(ActionEvent event) {
+        try {
+            App.setRoot("fichaAlumno");
+        } catch (IOException ex) {
+            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void gestionar(ActionEvent event) {
+        try {
+            App.setRoot("gestionEmpresas");
+        } catch (IOException ex) {
+            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     
