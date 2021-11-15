@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-
 <VBox prefHeight="604.0" prefWidth="646.0" spacing="10.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.EditarAlumnoController">
    <children>
       <FlowPane>
@@ -19,13 +18,13 @@
          </children>
       </FlowPane>
       <Label text="Nombre: " />
-      <TextField prefHeight="25.0" prefWidth="177.0" promptText="Nombre del alumno" />
+      <TextField fx:id="labelNombre" prefHeight="25.0" prefWidth="177.0" promptText="Nombre del alumno" />
       <Label text="Apellidos: " />
-      <TextField prefHeight="25.0" prefWidth="268.0" />
+      <TextField fx:id="labelApellidos" prefHeight="25.0" prefWidth="268.0" />
       <Label text="Email: " />
-      <TextField prefHeight="25.0" prefWidth="234.0" promptText="ejemplo@cesurformacion.com" />
+      <TextField fx:id="labelCorreo" prefHeight="25.0" prefWidth="234.0" promptText="ejemplo@cesurformacion.com" />
       <Label text="Contraseña: " />
-      <TextField prefHeight="25.0" prefWidth="205.0" />
+      <TextField fx:id="labelPass" prefHeight="25.0" prefWidth="205.0" />
       <FlowPane>
          <children>
             <Label text="Datos personales" />
@@ -33,17 +32,17 @@
          </children>
       </FlowPane>
       <Label text="DNI: " />
-      <TextField prefHeight="25.0" prefWidth="58.0" />
+      <TextField fx:id="labelDNI" prefHeight="25.0" prefWidth="58.0" />
       <Label text="Fecha de nacimiento: " />
-      <DatePicker />
+      <DatePicker fx:id="dateFecha" />
       <Label text="Teléfono de contacto:" />
-      <TextField />
+      <TextField fx:id="labelTelefono" />
       <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Label text="Horas Dual:" />
-            <TextField />
+            <TextField fx:id="labelDual" />
             <Label text="Horas FCT:" />
-            <TextField />
+            <TextField fx:id="labelFCT" />
          </children>
          <VBox.margin>
             <Insets top="10.0" />
@@ -51,8 +50,8 @@
       </FlowPane>
       <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="32.0" prefWidth="612.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />
-            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Borrar" />
+            <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />
+            <Button fx:id="btnBorrar" mnemonicParsing="false" onAction="#borrar" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Borrar" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
