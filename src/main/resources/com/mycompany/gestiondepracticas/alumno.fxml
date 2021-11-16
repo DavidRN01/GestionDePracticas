@@ -46,7 +46,7 @@
                         <TableColumn fx:id="colObservaciones" minWidth="100.0" prefWidth="231.0" text="Observaciones" />
                     </columns>
                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        
                     </columnResizePolicy>
                 </TableView>
             </center>

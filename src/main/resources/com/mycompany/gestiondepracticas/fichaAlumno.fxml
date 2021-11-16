@@ -20,24 +20,24 @@
          <top>
             <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="302.0" prefWidth="705.0" vgap="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Nombre: " />
-                  <Label text="Apellidos:" />
-                  <Label text="DNI:" />
-                  <Label text="Fecha de nacimiento:" />
-                  <Label text="Email:" />
-                  <Label text="Teléfono:" />
-                  <Label text="Empresa:" />
-                  <Label text="Tutor asignado:" />
-                  <Label text="Horas totales Dual: " />
-                  <Label text="Horas totales FCT:" />
-                  <Label text="Horas restantes Dual:" />
-                  <Label text="Horas restantes FCT:" />
+                  <Label fx:id="lblNombre" text="Nombre: " />
+                  <Label fx:id="lblApellidos" text="Apellidos:" />
+                  <Label fx:id="lblDNI" text="DNI:" />
+                  <Label fx:id="lblFechaNac" text="Fecha de nacimiento:" />
+                  <Label fx:id="lblEmail" text="Email:" />
+                  <Label fx:id="lblTelefono" text="Teléfono:" />
+                  <Label fx:id="lblEmpresa" text="Empresa:" />
+                  <Label fx:id="lblTutor" text="Tutor asignado:" />
+                  <Label fx:id="lblHDual" text="Horas totales Dual: " />
+                  <Label fx:id="lblHFCT" text="Horas totales FCT:" />
+                  <Label fx:id="lblResDual" text="Horas restantes Dual:" />
+                  <Label fx:id="lblResFCT" text="Horas restantes FCT:" />
                   <Label text="Observaciones:" />
-                  <TextArea prefHeight="133.0" prefWidth="316.0" />
+                  <TextArea fx:id="txtObservaciones" prefHeight="133.0" prefWidth="316.0" />
                   <FlowPane prefHeight="16.0" prefWidth="262.0">
                      <children>
                         <Label text="Empresa asignada: " />
-                        <ChoiceBox prefWidth="150.0" />
+                        <ChoiceBox fx:id="chEmpresa" prefWidth="150.0" />
                      </children>
                   </FlowPane>
                </children>
@@ -47,16 +47,16 @@
             </FlowPane>
          </top>
          <center>
-            <TableView prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tablaAlumno" prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn maxWidth="67.0" minWidth="67.0" prefWidth="67.0" text="Fecha" />
-                  <TableColumn maxWidth="62.0" minWidth="62.0" prefWidth="62.0" text="Tipo" />
-                  <TableColumn maxWidth="89.0" minWidth="89.0" prefWidth="89.0" text="Horas Totales" />
-                  <TableColumn prefWidth="211.0" text="Actividad" />
-                  <TableColumn prefWidth="231.0" text="Observaciones" />
+                  <TableColumn fx:id="cFecha" maxWidth="67.0" minWidth="67.0" prefWidth="67.0" text="Fecha" />
+                  <TableColumn fx:id="cTipo" maxWidth="62.0" minWidth="62.0" prefWidth="62.0" text="Tipo" />
+                  <TableColumn fx:id="cHTotales" maxWidth="89.0" minWidth="89.0" prefWidth="89.0" text="Horas Totales" />
+                  <TableColumn fx:id="cActividad" prefWidth="211.0" text="Actividad" />
+                  <TableColumn fx:id="cObservaciones" prefWidth="231.0" text="Observaciones" />
                </columns>
                <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                 
                </columnResizePolicy>
             </TableView>
          </center>
@@ -76,7 +76,7 @@
    <left>
       <BorderPane styleClass="colorFondoPaneIzquierdo" stylesheets="@../../../styles/estilos.css">
          <bottom>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Volver" BorderPane.alignment="CENTER">
+            <Button fx:id="btnVolver" alignment="CENTER" mnemonicParsing="false" onAction="#volver" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Volver" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="20.0" />
                </BorderPane.margin>
@@ -90,7 +90,7 @@
                         <Image url="@../../../imagenes/user.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" text="Nombre" />
+                  <Label fx:id="lblNomPerfil" alignment="CENTER" text="Nombre" />
                </children>
             </VBox>
          </top>
