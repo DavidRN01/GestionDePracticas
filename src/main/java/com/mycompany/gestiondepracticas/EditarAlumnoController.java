@@ -2,6 +2,7 @@ package com.mycompany.gestiondepracticas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,12 +48,15 @@ public class EditarAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Alumno a = SessionData.getAlumnoActual();
         if (a != null) {
+            java.sql.Date fecha = a.getFecha_nacimiento();
+            LocalDate localDateNacimiento = fecha.toLocalDate();
+
             labelNombre.setText(a.getNombre());
             labelApellidos.setText(a.getApellidos());
             labelCorreo.setText(a.getEmail());
             labelPass.setText(a.getContraseña());
             labelDNI.setText(a.getDni());
-            dateFecha.setValue(a.getFecha_nacimiento());
+            dateFecha.setValue(localDateNacimiento);
             labelTelefono.setText("" + a.getTelefono());
             labelDual.setText("" + a.getHoras_dual());
             labelFCT.setText("" + a.getHoras_fct());
@@ -70,13 +74,11 @@ public class EditarAlumnoController implements Initializable {
         a.setEmail(labelCorreo.getText());
         a.setContraseña(labelPass.getText());
         a.setDni(labelDNI.getText());
-        a.setFecha_nacimiento(dateFecha.getValue());
-        
-        //estos estoy liao a ver si encuentro el modo
-        
-        a.setTelefono(labelTelefono.getText());
-        a.setHoras_dual(labelDual.get);
-        a.setHoras_fct(labelFCT.get);
+        a.setFecha_nacimiento(java.sql.Date.valueOf(dateFecha.getValue()));
+
+        a.setTelefono(Integer.parseInt(labelTelefono.getText()));
+        a.setHoras_dual(Double.parseDouble(labelDual.getText()));
+        a.setHoras_fct(Double.parseDouble(labelFCT.getText()));
 
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction tr = s.beginTransaction();
@@ -84,7 +86,7 @@ public class EditarAlumnoController implements Initializable {
         tr.commit();
 
         try {
-            App.setRoot("profesor");
+            App.setRoot("fichaAlumno");
         } catch (IOException ex) {
             Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
         }

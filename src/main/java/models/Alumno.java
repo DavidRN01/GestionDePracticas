@@ -34,8 +34,8 @@ public class Alumno implements Serializable {
     private Date fecha_nacimiento;
     private String email;
     private int telefono;
-    private int horas_dual;
-    private int horas_fct;
+    private double horas_dual;
+    private double horas_fct;
     private String observaciones;
     private String dni;
     private Date fecha_creacion;
@@ -52,7 +52,7 @@ public class Alumno implements Serializable {
     public Alumno() {
     }
 
-    public Alumno(Long id, String nombre, String apellidos, String contraseña, Date fecha_nacimiento, String email, int telefono, int tutor, int horas_dual, int horas_fct, String observaciones, String dni, Date fecha_creacion) {
+    public Alumno(Long id, String nombre, String apellidos, String contraseña, Date fecha_nacimiento, String email, int telefono, double horas_dual, double horas_fct, String observaciones, String dni, Date fecha_creacion) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -66,6 +66,8 @@ public class Alumno implements Serializable {
         this.dni = dni;
         this.fecha_creacion = fecha_creacion;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -122,22 +124,24 @@ public class Alumno implements Serializable {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
-    public int getHoras_dual() {
+
+    public double getHoras_dual() {
         return horas_dual;
     }
 
-    public void setHoras_dual(int horas_dual) {
+    public void setHoras_dual(double horas_dual) {
         this.horas_dual = horas_dual;
     }
 
-    public int getHoras_fct() {
+    public double getHoras_fct() {
         return horas_fct;
     }
 
-    public void setHoras_fct(int horas_fct) {
+    public void setHoras_fct(double horas_fct) {
         this.horas_fct = horas_fct;
     }
+    
+    
 
     public String getObservaciones() {
         return observaciones;
