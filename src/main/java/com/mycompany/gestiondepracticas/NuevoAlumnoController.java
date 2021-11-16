@@ -2,6 +2,7 @@ package com.mycompany.gestiondepracticas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,11 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import models.Alumno;
+import models.Empresa;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class NuevoAlumnoController implements Initializable {
 
@@ -39,13 +43,20 @@ public class NuevoAlumnoController implements Initializable {
     private Button btnAceptar;
     @FXML
     private Button btnCancelar;
+    @FXML
+    private ChoiceBox<String> empresa;
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        Session s = HibernateUtil.getSessionFactory().openSession();
+
+        Query q = s.createQuery("FROM Empresa");
+        ArrayList<Empresa> empresas = (ArrayList<Empresa>) q.list();
+        
+        empresas.forEach((e) -> empresa.getItems().add(e.getNombre()));
+        
     }
 
     @FXML
@@ -65,6 +76,16 @@ public class NuevoAlumnoController implements Initializable {
         a.setHoras_fct(Double.parseDouble(labelFCT.getText()));
         
         Session s = HibernateUtil.getSessionFactory().openSession();
+        Query q = s.createQuery("FROM Empresa WHERE nombre = :n");
+        q.setParameter("n", empresa.getValue());
+        a.setEmpresaAsignada((Empresa) q.list().get(0));
+        
+        java.util.Date ahora = new java.util.Date();
+        java.sql.Date fecha = new java.sql.Date(ahora.getTime());
+        a.setFecha_creacion(fecha);
+        
+        a.setProfesor(SessionData.getProfesorActual());
+        
         Transaction tr = s.beginTransaction();
         s.save(a);
         tr.commit();

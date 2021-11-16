@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="893.0" spacing="20.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.GestionEmpresasController">
    <children>
       <TableView prefHeight="261.0" prefWidth="787.0">
@@ -24,8 +23,8 @@
       </TableView>
       <FlowPane alignment="CENTER_RIGHT" hgap="10.0" prefHeight="19.0" prefWidth="893.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Añadir" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Volver" />
+            <Button fx:id="btnAñadir" mnemonicParsing="false" onAction="#añadir" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Añadir" />
+            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#volver" prefHeight="27.0" prefWidth="95.0" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Volver" />
          </children>
       </FlowPane>
    </children>
