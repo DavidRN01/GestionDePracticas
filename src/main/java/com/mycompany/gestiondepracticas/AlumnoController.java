@@ -68,6 +68,8 @@ public class AlumnoController implements Initializable {
     private Label lblRestantesDual;
     @FXML
     private Label lblRestantesFCT;
+    @FXML
+    private Label lblNomPerfil;
 
     /**
      * Initializes the controller class.
@@ -106,6 +108,7 @@ public class AlumnoController implements Initializable {
         }
         
         //Rellenos los datos de la ficha del alumno
+        lblNomPerfil.setText(a.getNombre());
         lblNombre.setText("Nombre: " + a.getNombre());
         lblApellidos.setText("Apellidos: " + a.getApellidos());
         lblDNI.setText("DNI: " + a.getDni());

@@ -93,7 +93,7 @@
                                 <Image url="@../../../imagenes/user.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" text="Nombre" />
+                        <Label fx:id="lblNomPerfil" alignment="CENTER" text="Nombre" />
                     </children>
                 </VBox>
             </top>

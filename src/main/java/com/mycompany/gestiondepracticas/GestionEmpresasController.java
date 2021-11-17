@@ -64,7 +64,11 @@ public class GestionEmpresasController implements Initializable {
 
     @FXML
     private void aniadir(ActionEvent event) {
-        
+        try {
+            App.setRoot("anadirEmpresa");
+        } catch (IOException ex) {
+            Logger.getLogger(GestionEmpresasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
