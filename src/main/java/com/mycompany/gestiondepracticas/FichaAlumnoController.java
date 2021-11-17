@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Actividades;
 import models.Alumno;
+import models.Empresa;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -89,14 +90,20 @@ public class FichaAlumnoController implements Initializable {
 
     @FXML
     private TextArea txtObservaciones;
+    @FXML
+    private Button btnGuardar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SessionData.setAlumnoActual(a);
 
+        Query q = s.createQuery("FROM Empresa");
+        ArrayList<Empresa> empresas = (ArrayList<Empresa>) q.list();
+        empresas.forEach((e) -> chEmpresa.getItems().add(e.getNombre()));
+        
         Alumno a = SessionData.getAlumnoActual();
         if (a != null) {
             txtObservaciones.setText(a.getObservaciones());
+            chEmpresa.setValue(a.getEmpresaAsignada().getNombre());
         }
 
         cFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
@@ -133,29 +140,15 @@ public class FichaAlumnoController implements Initializable {
         lblHFCT.setText("Horas FCT: " + a.getHoras_fct() + " h");
         lblResDual.setText("Horas restantes Dual: " + (a.getHoras_dual() - totalDual) + " totales.");
         lblResFCT.setText("Horas restantes FCT: " + (a.getHoras_fct() - totalFCT) + " totales.");
-        chEmpresa.getItems().addAll("Premmia Network", "VistaProxima", "Sidapan", "SeFutebol", "FotoGratis", "Francis Corp");
+        
 
     }
 
     @FXML
     private void editar(ActionEvent event) {
-        Alumno a = SessionData.getAlumnoActual();
-        
-        a.setObservaciones(chEmpresa.getValue());
-
-        if (a != null) {
-
-            SessionData.getAlumnoActual().setObservaciones(txtObservaciones.getText());
-       
-            Transaction tr = s.beginTransaction();
-            s.update(SessionData.getAlumnoActual());
-            
-            tr.commit();
-
-        }
 
         try {
-            App.setRoot("profesor");
+            App.setRoot("editarAlumno");
         } catch (IOException ex) {
             Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,6 +162,27 @@ public class FichaAlumnoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void guardar(ActionEvent event) {
+        
+        Query q = s.createQuery("FROM Empresa WHERE nombre = :n");
+        q.setParameter("n", chEmpresa.getValue());
+        a.setEmpresaAsignada((Empresa) q.list().get(0));
+        
+        a.setObservaciones(txtObservaciones.getText());
+        
+        Transaction tr = s.beginTransaction();
+        s.update(a);
+        tr.commit();
+        
+        try {
+            App.setRoot("profesor");
+        } catch (IOException ex) {
+            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }
