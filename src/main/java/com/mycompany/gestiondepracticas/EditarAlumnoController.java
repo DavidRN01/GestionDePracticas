@@ -84,6 +84,7 @@ public class EditarAlumnoController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.update(a);
         tr.commit();
+        s.close();
 
         try {
             App.setRoot("fichaAlumno");
@@ -100,6 +101,7 @@ public class EditarAlumnoController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.remove(a);
         tr.commit();
+        s.close();
 
         try {
             App.setRoot("profesor");
