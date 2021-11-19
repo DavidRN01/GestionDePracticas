@@ -41,14 +41,21 @@ public class EditarEmpresaController implements Initializable {
     @FXML
     private Button btnGuardar;
     @FXML
-    private Button btnVolver;
+    private Button btnBorrar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Empresa e = SessionData.getEmpresaActual();
+
+        lblNombre.setText(e.getNombre());
+        lblTelefono.setText(e.getTelefono() + "");
+        lblEmail.setText(e.getEmail());
+        lblResponsable.setText(e.getResponsable());
+        lblObservaciones.setText(e.getObservaciones());
+
     }
 
     @FXML
@@ -66,15 +73,32 @@ public class EditarEmpresaController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.update(e);
         tr.commit();
-    }
-
-    @FXML
-    private void volver(ActionEvent event) {
+        s.close();
+        
         try {
             App.setRoot("gestionEmpresas");
         } catch (IOException ex) {
             Logger.getLogger(EditarEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+
+    @FXML
+    private void borrar(ActionEvent event) {
+        
+        Empresa e = SessionData.getEmpresaActual();
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction tr = s.beginTransaction();
+        s.remove(e);
+        tr.commit();
+        s.close();
+
+        try {
+            App.setRoot("gestionEmpresas");
+        } catch (IOException ex) {
+            Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

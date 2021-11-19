@@ -57,6 +57,8 @@ public class NuevoAlumnoController implements Initializable {
         
         empresas.forEach((e) -> empresa.getItems().add(e.getNombre()));
         
+        s.close();
+        
     }
 
     @FXML
@@ -89,6 +91,7 @@ public class NuevoAlumnoController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.save(a);
         tr.commit();
+        s.close();
 
         try {
             App.setRoot("profesor");

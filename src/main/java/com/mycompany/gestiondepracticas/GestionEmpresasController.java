@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import models.Empresa;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -60,6 +61,8 @@ public class GestionEmpresasController implements Initializable {
         ArrayList<Empresa> emp = (ArrayList<Empresa>) q.list();
         tablaEmpresa.getItems().addAll(emp);
 
+        s.close();
+        
     }
 
     @FXML
@@ -77,6 +80,22 @@ public class GestionEmpresasController implements Initializable {
             App.setRoot("profesor");
         } catch (IOException ex) {
             Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void seleccion(MouseEvent event) {
+        
+        Empresa e = tablaEmpresa.getSelectionModel().getSelectedItem();
+
+        if (e != null) {
+            SessionData.setEmpresaActual(e);
+            try {
+                App.setRoot("editarEmpresa");
+            } catch (IOException ex) {
+                Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }

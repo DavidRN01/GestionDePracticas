@@ -40,6 +40,7 @@ public class PrimaryController {
             
             SessionData.setAlumnoActual(a);
             
+            s.close();
             try {
                 App.setRoot("alumno");
             } catch (IOException ex) {
@@ -57,7 +58,7 @@ public class PrimaryController {
                 Profesor p = (Profesor) qp.list().get(0);
 
                 SessionData.setProfesorActual(p);
-
+                s.close();
                 try {
                     App.setRoot("profesor");
                 } catch (IOException ex) {
@@ -71,6 +72,7 @@ public class PrimaryController {
                 alerta.setContentText("El correo "+txtEmail.getText() 
                     + " no existe o la contraseña es incorrecta");
                 alerta.showAndWait();
+                s.close();
                 
             }
         }

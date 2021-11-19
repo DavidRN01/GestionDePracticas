@@ -98,7 +98,7 @@ public class NuevaTareaController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.save(a);
         tr.commit();
-
+        s.close();
         try {
             App.setRoot("alumno");
         } catch (IOException ex) {

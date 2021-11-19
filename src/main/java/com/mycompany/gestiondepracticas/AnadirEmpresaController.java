@@ -70,6 +70,13 @@ public class AnadirEmpresaController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.save(e);
         tr.commit();
+        s.close();
+        
+        try {
+            App.setRoot("gestionEmpresas");
+        } catch (IOException ex) {
+            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

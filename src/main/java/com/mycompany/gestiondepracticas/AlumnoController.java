@@ -97,16 +97,16 @@ public class AlumnoController implements Initializable {
         contenido.addAll(a.getActividades());
 
         //Calculamos las horas que ya lleva realizadas en cada módulo
-        double totalDual=0;
-        double totalFCT=0;
-        for(int i=0; i<a.getActividades().size(); i++) {
-            if(a.getActividades().get(i).getTipo_practica().equals("Dual")) {
+        double totalDual = 0;
+        double totalFCT = 0;
+        for (int i = 0; i < a.getActividades().size(); i++) {
+            if (a.getActividades().get(i).getTipo_practica().equals("Dual")) {
                 totalDual += a.getActividades().get(i).getTotal_horas();
             } else {
                 totalFCT += a.getActividades().get(i).getTotal_horas();
             }
         }
-        
+
         //Rellenos los datos de la ficha del alumno
         lblNomPerfil.setText(a.getNombre());
         lblNombre.setText("Nombre: " + a.getNombre());
@@ -119,10 +119,11 @@ public class AlumnoController implements Initializable {
         lblProfesor.setText("Tutor asignado: " + a.getProfesor().getNombre());
         lblHorasDual.setText("Horas totales Dual: " + a.getHoras_dual());
         lblHorasFCT.setText("Horas totales FCT: " + a.getHoras_fct());
-        lblRestantesDual.setText("Horas restantes Dual: " + (a.getHoras_dual()-totalDual));
-        lblRestantesFCT.setText("Horas restantes FCT: " + (a.getHoras_fct()-totalFCT));
+        lblRestantesDual.setText("Horas restantes Dual: " + (a.getHoras_dual() - totalDual));
+        lblRestantesFCT.setText("Horas restantes FCT: " + (a.getHoras_fct() - totalFCT));
         
-        
+        s.close();
+
     }
 
     @FXML
@@ -147,11 +148,13 @@ public class AlumnoController implements Initializable {
 
         Actividades a = tabla.getSelectionModel().getSelectedItem();
 
-        SessionData.setActividadActual(a);
-        try {
-            App.setRoot("editarTarea");
-        } catch (IOException ex) {
-            Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+        if (a != null) {
+            SessionData.setActividadActual(a);
+            try {
+                App.setRoot("editarTarea");
+            } catch (IOException ex) {
+                Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

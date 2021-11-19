@@ -72,7 +72,7 @@
                   <Insets />
                </FlowPane.margin>
             </Button>
-            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#volver" styleClass="btnSalir" text="Volver">
+            <Button fx:id="btnBorrar" mnemonicParsing="false" onAction="#borrar" styleClass="btnSalir" text="Borrar">
                <FlowPane.margin>
                   <Insets right="10.0" />
                </FlowPane.margin>

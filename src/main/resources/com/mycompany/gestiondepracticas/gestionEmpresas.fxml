@@ -9,7 +9,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="893.0" spacing="20.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.GestionEmpresasController">
    <children>
-      <TableView fx:id="tablaEmpresa" prefHeight="261.0" prefWidth="787.0">
+      <TableView fx:id="tablaEmpresa" onMouseClicked="#seleccion" prefHeight="261.0" prefWidth="787.0">
         <columns>
             <TableColumn fx:id="cNombre" prefWidth="75.0" text="Nombre" />
           <TableColumn fx:id="cTelefono" prefWidth="104.0" text="Telefono" />

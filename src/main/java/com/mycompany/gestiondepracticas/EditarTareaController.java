@@ -81,6 +81,7 @@ public class EditarTareaController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.update(a);
         tr.commit();
+        s.close();
 
         try {
             App.setRoot("alumno");
@@ -101,6 +102,7 @@ public class EditarTareaController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.remove(a);
         tr.commit();
+        s.close();
         
         try {
             App.setRoot("alumno");

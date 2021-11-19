@@ -84,9 +84,9 @@ public class FichaAlumnoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    Session s = HibernateUtil.getSessionFactory().openSession();
+    
 
-    Alumno a = s.load(Alumno.class, SessionData.getAlumnoActual().getId());
+    
 
     @FXML
     private TextArea txtObservaciones;
@@ -96,6 +96,8 @@ public class FichaAlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        
         Query q = s.createQuery("FROM Empresa");
         ArrayList<Empresa> empresas = (ArrayList<Empresa>) q.list();
         empresas.forEach((e) -> chEmpresa.getItems().add(e.getNombre()));
@@ -112,9 +114,7 @@ public class FichaAlumnoController implements Initializable {
         cActividad.setCellValueFactory(new PropertyValueFactory("actividad_realizada"));
         cObservaciones.setCellValueFactory(new PropertyValueFactory("observaciones"));
 
-        Query listaActividades = s.createQuery("FROM Actividades");
-        ArrayList<Actividades> act = (ArrayList<Actividades>) listaActividades.list();
-        tablaAlumno.getItems().addAll(act);
+        tablaAlumno.getItems().addAll(a.getActividades());
 
         double totalDual = 0;
         double totalFCT = 0;
@@ -141,6 +141,7 @@ public class FichaAlumnoController implements Initializable {
         lblResDual.setText("Horas restantes Dual: " + (a.getHoras_dual() - totalDual) + " totales.");
         lblResFCT.setText("Horas restantes FCT: " + (a.getHoras_fct() - totalFCT) + " totales.");
         
+        s.close();
 
     }
 
@@ -167,6 +168,8 @@ public class FichaAlumnoController implements Initializable {
     @FXML
     private void guardar(ActionEvent event) {
         
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Alumno a = s.load(Alumno.class, SessionData.getAlumnoActual().getId());
         Query q = s.createQuery("FROM Empresa WHERE nombre = :n");
         q.setParameter("n", chEmpresa.getValue());
         a.setEmpresaAsignada((Empresa) q.list().get(0));
@@ -176,6 +179,7 @@ public class FichaAlumnoController implements Initializable {
         Transaction tr = s.beginTransaction();
         s.update(a);
         tr.commit();
+        s.close();
         
         try {
             App.setRoot("profesor");

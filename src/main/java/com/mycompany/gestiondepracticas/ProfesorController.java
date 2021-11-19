@@ -103,12 +103,15 @@ public class ProfesorController implements Initializable {
     private void seleccionar(MouseEvent event) {
         Alumno a = tabla.getSelectionModel().getSelectedItem();
         SessionData.setAlumnoActual(a);
-        try {
-            App.setRoot("fichaAlumno");
-        } catch (IOException ex) {
-            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+        if (a != null) {
+            SessionData.setAlumnoActual(a);
+            try {
+                App.setRoot("fichaAlumno");
+            } catch (IOException ex) {
+                Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        }
+    }
     
     @FXML
     private void salir(ActionEvent event) {
