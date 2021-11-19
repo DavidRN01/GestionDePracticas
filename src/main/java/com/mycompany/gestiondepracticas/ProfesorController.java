@@ -85,6 +85,8 @@ public class ProfesorController implements Initializable {
         labelNombre.setText( "Nombre: "+p.getNombre() );
         labelApellidos.setText("Apellidos: "+p.getApellidos() );
         labelEmail.setText("Email: "+p.getEmail() );
+        
+        s.close();
     }    
 
      private void actualizarTabla() throws HibernateException {
