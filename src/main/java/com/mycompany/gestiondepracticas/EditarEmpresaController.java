@@ -12,10 +12,11 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import models.Alumno;
 import models.Empresa;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -25,14 +26,10 @@ import org.hibernate.Transaction;
  *
  * @author diegu
  */
-public class AnadirEmpresaController implements Initializable {
+public class EditarEmpresaController implements Initializable {
 
     @FXML
-    private Button btnGuardar;
-    @FXML
-    private Button btnSalir;
-    @FXML
-    private TextField lblEmpresa;
+    private TextField lblNombre;
     @FXML
     private TextField lblTelefono;
     @FXML
@@ -41,6 +38,10 @@ public class AnadirEmpresaController implements Initializable {
     private TextField lblResponsable;
     @FXML
     private TextField lblObservaciones;
+    @FXML
+    private Button btnGuardar;
+    @FXML
+    private Button btnVolver;
 
     /**
      * Initializes the controller class.
@@ -52,34 +53,28 @@ public class AnadirEmpresaController implements Initializable {
 
     @FXML
     private void guardar(ActionEvent event) {
-        Empresa e = new Empresa();
 
-        java.util.Date ahora = new java.util.Date();
-        java.sql.Date fecha = new java.sql.Date(ahora.getTime());
-        e.setFecha_creacion(fecha);
+        Empresa e = SessionData.getEmpresaActual();
 
-        
+        e.setNombre(lblNombre.getText());
         int i = Integer.parseInt(lblTelefono.getText());
-        e.setNombre(lblEmpresa.getText());
-        e.setTelefono(i);
         e.setEmail(lblEmail.getText());
         e.setResponsable(lblResponsable.getText());
         e.setObservaciones(lblObservaciones.getText());
 
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction tr = s.beginTransaction();
-        s.save(e);
+        s.update(e);
         tr.commit();
     }
 
     @FXML
-    private void salir(ActionEvent event) {
+    private void volver(ActionEvent event) {
         try {
             App.setRoot("gestionEmpresas");
         } catch (IOException ex) {
-            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditarEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
 }

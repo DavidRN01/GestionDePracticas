@@ -3,6 +3,7 @@ package com.mycompany.gestiondepracticas;
 
 import models.Alumno;
 import models.Actividades;
+import models.Empresa;
 import models.Profesor;
 /**
  *
@@ -13,6 +14,15 @@ public class SessionData {
     private static Alumno alumnoActual;
     private static Actividades actividadActual;
     private static Profesor profesorActual;
+    private static Empresa empresaActual;
+
+    public static Empresa getEmpresaActual() {
+        return empresaActual;
+    }
+
+    public static void setEmpresaActual(Empresa empresaActual) {
+        SessionData.empresaActual = empresaActual;
+    }
     
     public static Alumno getAlumnoActual() {
         return alumnoActual;
