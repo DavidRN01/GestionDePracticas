@@ -32,7 +32,6 @@ import org.hibernate.query.Query;
 /**
  * FXML Controller class
  *
- * @author DavidRamosNavas
  */
 public class FichaAlumnoController implements Initializable {
 

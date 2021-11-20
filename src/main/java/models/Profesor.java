@@ -13,7 +13,6 @@ import models.Alumno;
 
 /**
  *
- * @author chris
  */
 @Entity
 @Table(name="profesor")

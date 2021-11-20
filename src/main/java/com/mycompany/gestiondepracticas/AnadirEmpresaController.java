@@ -23,7 +23,6 @@ import org.hibernate.Transaction;
 /**
  * FXML Controller class
  *
- * @author diegu
  */
 public class AnadirEmpresaController implements Initializable {
 

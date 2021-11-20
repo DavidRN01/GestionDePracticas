@@ -7,7 +7,6 @@ import models.Empresa;
 import models.Profesor;
 /**
  *
- * @author chris
  */
 public class SessionData {
     

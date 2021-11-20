@@ -26,7 +26,6 @@ import org.hibernate.query.Query;
 /**
  * FXML Controller class
  *
- * @author DavidRamosNavas
  */
 public class GestionEmpresasController implements Initializable {
 

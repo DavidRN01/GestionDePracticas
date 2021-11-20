@@ -24,7 +24,6 @@ import org.hibernate.Session;
 /**
  * FXML Controller class
  *
- * @author DavidRamosNavas
  */
 public class AlumnoController implements Initializable {
 

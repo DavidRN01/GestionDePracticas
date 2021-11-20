@@ -30,7 +30,6 @@ import org.hibernate.Transaction;
 /**
  * FXML Controller class
  *
- * @author DavidRamosNavas
  */
 public class NuevaTareaController implements Initializable {
 

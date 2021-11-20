@@ -19,7 +19,6 @@ import models.Profesor;
 
 /**
  *
- * @author DavidRamosNavas
  */
 
 @Entity

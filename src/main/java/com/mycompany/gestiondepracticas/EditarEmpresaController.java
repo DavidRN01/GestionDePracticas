@@ -24,7 +24,6 @@ import org.hibernate.Transaction;
 /**
  * FXML Controller class
  *
- * @author diegu
  */
 public class EditarEmpresaController implements Initializable {
 

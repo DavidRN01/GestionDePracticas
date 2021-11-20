@@ -6,7 +6,6 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author FranciscoRomeroGuill
  */
 public class HibernateUtil {
     
