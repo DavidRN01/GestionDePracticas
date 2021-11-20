@@ -3,6 +3,7 @@ package models;
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Empresa {
     private String observaciones;
     private Date fecha_creacion;
 
-    @OneToMany
+    @OneToMany( mappedBy="empresa", fetch=FetchType.EAGER)
     private List<Alumno> alumnos;
     
     public Empresa() {

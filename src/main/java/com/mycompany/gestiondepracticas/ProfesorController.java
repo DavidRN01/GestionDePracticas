@@ -63,9 +63,8 @@ public class ProfesorController implements Initializable {
     @Override
     // https://openjfx.io/javadoc/11/javafx.controls/javafx/scene/control/TableView.html
     public void initialize(URL url, ResourceBundle rb) {
-        //Consigo la lista de alumnos del profesor
-//        ObservableList<Alumno> contenido = FXCollections.observableArrayList();
-//        tabla.setItems(contenido);
+        ObservableList<Alumno> contenido = FXCollections.observableArrayList();
+        tabla.setItems(contenido);
         
         colDNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -73,13 +72,10 @@ public class ProfesorController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         
         Session s = HibernateUtil.getSessionFactory().openSession();
-
-        Query q = s.createQuery("FROM Alumno");
-        ArrayList<Alumno> alumno = (ArrayList<Alumno>) q.list();
-        tabla.getItems().addAll(alumno);
-        
         Profesor p = s.load(Profesor.class, SessionData.getProfesorActual().getId());
         SessionData.setProfesorActual(p);
+        
+        contenido.addAll(p.getAlumnos());
         
         labelImagen.setText(p.getNombre() );
         labelNombre.setText( "Nombre: "+p.getNombre() );
@@ -88,16 +84,6 @@ public class ProfesorController implements Initializable {
         
         s.close();
     }    
-
-     private void actualizarTabla() throws HibernateException {
-        
-        //abro una sesion y hago una query para imprimir todos los datos de la carta
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Query q = s.createQuery("FROM Alumno");
-        ArrayList<Alumno> alumno = (ArrayList<Alumno>) q.list();
-        tabla.getItems().addAll(alumno);
-        s.close();
-    }
     
     @FXML
     private void seleccionar(MouseEvent event) {
