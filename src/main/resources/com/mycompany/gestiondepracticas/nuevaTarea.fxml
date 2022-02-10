@@ -1,55 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="409.0" prefWidth="652.0" styleClass="colorTarea" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.NuevaTareaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="834.0" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.NuevaTareaController">
    <children>
-      <Label text="Actividad realizada: " />
-      <TextField fx:id="txtNombre" promptText="Nombre de la tarea" />
-      <Label text="Observaciones:">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Label>
-      <TextArea fx:id="txtObservaciones" prefHeight="93.0" prefWidth="652.0" />
-      <Label text="Tipo de práctica:">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Label>
-      <ChoiceBox fx:id="chooser" prefWidth="150.0" />
-      <Label text="Horas totales realizadas:">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Label>
-      <Spinner fx:id="horas" />
-      <Label text="Fecha:">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Label>
-      <DatePicker fx:id="datePicker" />
-      <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="32.0" prefWidth="612.0">
+      <Pane prefHeight="79.0" prefWidth="549.0" styleClass="colorBorde" stylesheets="@../../../styles/estilos.css">
          <children>
-            <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Aceptar" />
-            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Cancelar" />
+            <ImageView fx:id="datosPersonales" fitHeight="64.0" fitWidth="59.0" layoutX="7.0" layoutY="8.0">
+               <image>
+                  <Image url="@../../../imagenes/building-svgrepo-com.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="75.0" layoutY="23.0" text="Nueva Tarea" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </FlowPane>
+      </Pane>
+      <Pane prefHeight="8.0" prefWidth="834.0" styleClass="separador" stylesheets="@../../../styles/estilos.css" />
+      <Pane prefHeight="432.0" prefWidth="434.0" stylesheets="@../../../styles/estilos.css">
+         <children>
+            <Label layoutX="224.0" layoutY="46.0" prefHeight="25.0" prefWidth="149.0" text="Actividad realizada:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="224.0" layoutY="89.0" prefHeight="25.0" prefWidth="136.0" text="Tipo de práctica:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="224.0" layoutY="140.0" prefHeight="17.0" prefWidth="112.0" text="Horas totales:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="224.0" layoutY="251.0" prefHeight="25.0" prefWidth="122.0" text="Observaciones:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="224.0" layoutY="186.0" text="Fecha:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNombre" layoutX="414.0" layoutY="46.0" styleClass="form__field" stylesheets="@../../../styles/estilos.css" />
+            <ImageView fx:id="btnAceptar" fitHeight="51.0" fitWidth="41.0" layoutX="468.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/mono-save.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnCancelar" fitHeight="51.0" fitWidth="41.0" layoutX="542.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/193-1934895_back-png-flecha-de-regresar-png-transparent-png.png" />
+               </image>
+            </ImageView>
+            <ChoiceBox fx:id="chooser" layoutX="413.0" layoutY="89.0" prefWidth="150.0" />
+            <Spinner fx:id="horas" layoutX="414.0" layoutY="140.0" />
+            <DatePicker fx:id="datePicker" layoutX="402.0" layoutY="186.0" />
+            <TextArea fx:id="txtObservaciones" layoutX="401.0" layoutY="243.0" prefHeight="103.0" prefWidth="278.0" />
+         </children>
+      </Pane>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </VBox>

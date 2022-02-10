@@ -7,11 +7,15 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Alumno;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -37,9 +41,9 @@ public class EditarAlumnoController implements Initializable {
     @FXML
     private TextField labelFCT;
     @FXML
-    private Button btnAceptar;
+    private ImageView btnAceptar;
     @FXML
-    private Button btnBorrar;
+    private ImageView btnBorrar;
 
     /**
      * Initializes the controller class.
@@ -61,53 +65,62 @@ public class EditarAlumnoController implements Initializable {
             labelDual.setText("" + a.getHoras_dual());
             labelFCT.setText("" + a.getHoras_fct());
 
+            añadirHandlers();
+
         }
     }
 
-    @FXML
-    private void aceptar(ActionEvent event) {
+    private void añadirHandlers() {
 
-        Alumno a = SessionData.getAlumnoActual();
+        btnAceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-        a.setNombre(labelNombre.getText());
-        a.setApellidos(labelApellidos.getText());
-        a.setEmail(labelCorreo.getText());
-        a.setContraseña(labelPass.getText());
-        a.setDni(labelDNI.getText());
-        a.setFecha_nacimiento(java.sql.Date.valueOf(dateFecha.getValue()));
+            @Override
+            public void handle(MouseEvent event) {
+                Alumno a = SessionData.getAlumnoActual();
 
-        a.setTelefono(Integer.parseInt(labelTelefono.getText()));
-        a.setHoras_dual(Double.parseDouble(labelDual.getText()));
-        a.setHoras_fct(Double.parseDouble(labelFCT.getText()));
+                a.setNombre(labelNombre.getText());
+                a.setApellidos(labelApellidos.getText());
+                a.setEmail(labelCorreo.getText());
+                a.setContraseña(labelPass.getText());
+                a.setDni(labelDNI.getText());
+                a.setFecha_nacimiento(java.sql.Date.valueOf(dateFecha.getValue()));
 
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Transaction tr = s.beginTransaction();
-        s.update(a);
-        tr.commit();
-        s.close();
+                a.setTelefono(Integer.parseInt(labelTelefono.getText()));
+                a.setHoras_dual(Double.parseDouble(labelDual.getText()));
+                a.setHoras_fct(Double.parseDouble(labelFCT.getText()));
 
-        try {
-            App.setRoot("fichaAlumno");
-        } catch (IOException ex) {
-            Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+                Session s = HibernateUtil.getSessionFactory().openSession();
+                Transaction tr = s.beginTransaction();
+                s.update(a);
+                tr.commit();
+                s.close();
 
-    @FXML
-    private void borrar(ActionEvent event) {
+                try {
+                    App.setRoot("fichaAlumno");
+                } catch (IOException ex) {
+                    Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
-        Alumno a = SessionData.getAlumnoActual();
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Transaction tr = s.beginTransaction();
-        s.remove(a);
-        tr.commit();
-        s.close();
+        btnBorrar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-        try {
-            App.setRoot("profesor");
-        } catch (IOException ex) {
-            Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            @Override
+            public void handle(MouseEvent event) {
+                Alumno a = SessionData.getAlumnoActual();
+                Session s = HibernateUtil.getSessionFactory().openSession();
+                Transaction tr = s.beginTransaction();
+                s.remove(a);
+                tr.commit();
+                s.close();
+
+                try {
+                    App.setRoot("profesor");
+                } catch (IOException ex) {
+                    Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
     }
 

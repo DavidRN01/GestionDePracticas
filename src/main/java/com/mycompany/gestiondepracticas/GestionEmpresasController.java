@@ -12,12 +12,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Empresa;
 import org.hibernate.Session;
@@ -40,11 +42,11 @@ public class GestionEmpresasController implements Initializable {
     @FXML
     private TableColumn<Empresa, String> cObservaciones;
     @FXML
-    private Button btnAniadir;
-    @FXML
-    private Button btnVolver;
+    private ImageView btnVolver;
     @FXML
     private TableView<Empresa> tablaEmpresa;
+    @FXML
+    private ImageView btnAñadir;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,24 +64,7 @@ public class GestionEmpresasController implements Initializable {
 
         s.close();
         
-    }
-
-    @FXML
-    private void aniadir(ActionEvent event) {
-        try {
-            App.setRoot("anadirEmpresa");
-        } catch (IOException ex) {
-            Logger.getLogger(GestionEmpresasController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void volver(ActionEvent event) {
-         try {
-            App.setRoot("profesor");
-        } catch (IOException ex) {
-            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        añadirHandlers();
         
     }
 
@@ -97,6 +82,34 @@ public class GestionEmpresasController implements Initializable {
             }
         }
         
+    }
+    
+    private void añadirHandlers() {
+
+        btnVolver.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("profesor");
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        btnAñadir.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("anadirEmpresa");
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
     
     

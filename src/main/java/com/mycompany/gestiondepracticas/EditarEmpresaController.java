@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +18,8 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Empresa;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,9 +41,11 @@ public class EditarEmpresaController implements Initializable {
     @FXML
     private TextField lblObservaciones;
     @FXML
-    private Button btnGuardar;
+    private ImageView btnGuardar;
     @FXML
-    private Button btnBorrar;
+    private ImageView btnBorrar;
+    @FXML
+    private ImageView datosPersonales;
 
     /**
      * Initializes the controller class.
@@ -55,49 +60,57 @@ public class EditarEmpresaController implements Initializable {
         lblResponsable.setText(e.getResponsable());
         lblObservaciones.setText(e.getObservaciones());
 
+        añadirHandlers();
+
     }
 
-    @FXML
-    private void guardar(ActionEvent event) {
+    private void añadirHandlers() {
 
-        Empresa e = SessionData.getEmpresaActual();
+        btnBorrar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-        e.setNombre(lblNombre.getText());
-        int i = Integer.parseInt(lblTelefono.getText());
-        e.setEmail(lblEmail.getText());
-        e.setResponsable(lblResponsable.getText());
-        e.setObservaciones(lblObservaciones.getText());
+            @Override
+            public void handle(MouseEvent event) {
+                Empresa e = SessionData.getEmpresaActual();
+                Session s = HibernateUtil.getSessionFactory().openSession();
+                Transaction tr = s.beginTransaction();
+                s.remove(e);
+                tr.commit();
+                s.close();
 
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Transaction tr = s.beginTransaction();
-        s.update(e);
-        tr.commit();
-        s.close();
-        
-        try {
-            App.setRoot("gestionEmpresas");
-        } catch (IOException ex) {
-            Logger.getLogger(EditarEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+                try {
+                    App.setRoot("gestionEmpresas");
+                } catch (IOException ex) {
+                    Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
+        btnGuardar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-    @FXML
-    private void borrar(ActionEvent event) {
-        
-        Empresa e = SessionData.getEmpresaActual();
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Transaction tr = s.beginTransaction();
-        s.remove(e);
-        tr.commit();
-        s.close();
+            @Override
+            public void handle(MouseEvent event) {
+                Empresa e = SessionData.getEmpresaActual();
 
-        try {
-            App.setRoot("gestionEmpresas");
-        } catch (IOException ex) {
-            Logger.getLogger(EditarAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+                e.setNombre(lblNombre.getText());
+                int i = Integer.parseInt(lblTelefono.getText());
+                e.setEmail(lblEmail.getText());
+                e.setResponsable(lblResponsable.getText());
+                e.setObservaciones(lblObservaciones.getText());
+
+                Session s = HibernateUtil.getSessionFactory().openSession();
+                Transaction tr = s.beginTransaction();
+                s.update(e);
+                tr.commit();
+                s.close();
+
+                try {
+                    App.setRoot("gestionEmpresas");
+                } catch (IOException ex) {
+                    Logger.getLogger(EditarEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
 
 }

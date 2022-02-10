@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Actividades;
 import models.Alumno;
@@ -28,9 +30,9 @@ import org.hibernate.Session;
 public class AlumnoController implements Initializable {
 
     @FXML
-    private Button btnSalir;
+    private ImageView btnSalir;
     @FXML
-    private Button btnNuevaTarea;
+    private ImageView btnNuevaTarea;
     @FXML
     private TableView<Actividades> tabla;
     @FXML
@@ -56,26 +58,15 @@ public class AlumnoController implements Initializable {
     @FXML
     private Label lblTelefono;
     @FXML
-    private Label lblEmpresa;
+    private ImageView lblImagen;
     @FXML
-    private Label lblProfesor;
-    @FXML
-    private Label lblHorasDual;
-    @FXML
-    private Label lblHorasFCT;
-    @FXML
-    private Label lblRestantesDual;
-    @FXML
-    private Label lblRestantesFCT;
-    @FXML
-    private Label lblNomPerfil;
+    private Label lblDatos;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        
+        
         //Creamos la lista observable
         ObservableList<Actividades> contenido = FXCollections.observableArrayList();
         tabla.setItems(contenido);
@@ -107,38 +98,53 @@ public class AlumnoController implements Initializable {
         }
 
         //Rellenos los datos de la ficha del alumno
-        lblNomPerfil.setText(a.getNombre());
-        lblNombre.setText("Nombre: " + a.getNombre());
-        lblApellidos.setText("Apellidos: " + a.getApellidos());
-        lblDNI.setText("DNI: " + a.getDni());
-        lblNacimiento.setText("Fecha de nacimiento: " + a.getFecha_nacimiento());
-        lblEmail.setText("Email: " + a.getEmail());
-        lblTelefono.setText("Teléfono: " + a.getTelefono());
-        lblEmpresa.setText("Empresa: " + a.getEmpresaAsignada().getNombre());
-        lblProfesor.setText("Tutor asignado: " + a.getProfesor().getNombre());
-        lblHorasDual.setText("Horas totales Dual: " + a.getHoras_dual());
-        lblHorasFCT.setText("Horas totales FCT: " + a.getHoras_fct());
-        lblRestantesDual.setText("Horas restantes Dual: " + (a.getHoras_dual() - totalDual));
-        lblRestantesFCT.setText("Horas restantes FCT: " + (a.getHoras_fct() - totalFCT));
-        
+        lblNombre.setText(a.getNombre());
+        lblApellidos.setText(a.getApellidos());
+        lblDNI.setText(a.getDni());
+        lblNacimiento.setText(""+a.getFecha_nacimiento());
+        lblEmail.setText(a.getEmail());
+        lblTelefono.setText("" + a.getTelefono());
+
         s.close();
 
+        añadirHandlers();
+
     }
 
-    @FXML
-    private void salir(ActionEvent event) {
-        System.exit(0);
-    }
+    private void añadirHandlers() {
 
-    @FXML
-    private void nuevaTarea(ActionEvent event) {
+        btnSalir.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-        SessionData.setActividadActual(null);
-        try {
-            App.setRoot("nuevaTarea");
-        } catch (IOException ex) {
-            Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            @Override
+            public void handle(MouseEvent event) {
+                System.exit(0);
+            }
+        });
+
+        btnNuevaTarea.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                SessionData.setActividadActual(null);
+                try {
+                    App.setRoot("nuevaTarea");
+                } catch (IOException ex) {
+                    Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        lblDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("datosEmpresaAlumno");
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
     }
 

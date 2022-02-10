@@ -1,4 +1,3 @@
-
 package com.mycompany.gestiondepracticas;
 
 import java.io.IOException;
@@ -10,6 +9,8 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,11 +18,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Alumno;
 import models.Profesor;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -31,11 +34,11 @@ import org.hibernate.query.Query;
 public class ProfesorController implements Initializable {
 
     @FXML
-    private Button btnSalir;
+    private ImageView btnSalir;
     @FXML
-    private Button btnAñadir;
+    private ImageView btnAñadir;
     @FXML
-    private Button btnGestionar;
+    private Label btnGestionar;
     @FXML
     private Label labelNombre;
     @FXML
@@ -53,9 +56,8 @@ public class ProfesorController implements Initializable {
     @FXML
     private TableColumn<Alumno, String> colEmail;
     @FXML
-    private Label labelImagen;
+    private ImageView lblImagen;
 
-    
     /**
      * Initializes the controller class.
      */
@@ -64,26 +66,28 @@ public class ProfesorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Alumno> contenido = FXCollections.observableArrayList();
         tabla.setItems(contenido);
-        
+
         colDNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        
+
         Session s = HibernateUtil.getSessionFactory().openSession();
         Profesor p = s.load(Profesor.class, SessionData.getProfesorActual().getId());
         SessionData.setProfesorActual(p);
-        
+
         contenido.addAll(p.getAlumnos());
-        
-        labelImagen.setText(p.getNombre() );
-        labelNombre.setText( "Nombre: "+p.getNombre() );
-        labelApellidos.setText("Apellidos: "+p.getApellidos() );
-        labelEmail.setText("Email: "+p.getEmail() );
-        
+
+        labelNombre.setText(p.getNombre());
+        labelApellidos.setText(p.getApellidos());
+        labelEmail.setText(p.getEmail());
+
         s.close();
-    }    
-    
+
+        añadirHandlers();
+
+    }
+
     @FXML
     private void seleccionar(MouseEvent event) {
         Alumno a = tabla.getSelectionModel().getSelectedItem();
@@ -97,30 +101,41 @@ public class ProfesorController implements Initializable {
             }
         }
     }
-    
-    @FXML
-    private void salir(ActionEvent event) {
-        System.exit(0);
+
+    private void añadirHandlers() {
+
+        btnSalir.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                System.exit(0);
+            }
+        });
+
+        btnGestionar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("gestionEmpresas");
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        btnAñadir.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("nuevoAlumno");
+                } catch (IOException ex) {
+                    Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
 
-    @FXML
-    private void añadir(ActionEvent event) {
-        try {
-            App.setRoot("nuevoAlumno");
-        } catch (IOException ex) {
-            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void gestionar(ActionEvent event) {
-        try {
-            App.setRoot("gestionEmpresas");
-        } catch (IOException ex) {
-            Logger.getLogger(ProfesorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    
-    
 }

@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +23,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Actividades;
 import models.Alumno;
 import models.Empresa;
@@ -36,17 +39,15 @@ import org.hibernate.query.Query;
 public class FichaAlumnoController implements Initializable {
 
     @FXML
-    private Button btnEditar;
+    private ImageView btnEditar;
     @FXML
-    private TableColumn<Alumno, Date> cFecha;
+    private TableColumn<Actividades, Date> cFecha;
     @FXML
-    private TableColumn<Alumno, String> cTipo;
+    private TableColumn<Actividades, Integer> cHTotales;
     @FXML
-    private TableColumn<Alumno, Integer> cHTotales;
+    private TableColumn<Actividades, String> cActividad;
     @FXML
-    private TableColumn<Alumno, String> cActividad;
-    @FXML
-    private TableColumn<Alumno, String> cObservaciones;
+    private TableColumn<Actividades, String> cObservaciones;
     @FXML
     private Label lblNombre;
     @FXML
@@ -60,52 +61,22 @@ public class FichaAlumnoController implements Initializable {
     @FXML
     private Label lblTelefono;
     @FXML
-    private Label lblEmpresa;
-    @FXML
-    private Label lblTutor;
-    @FXML
-    private Label lblHDual;
-    @FXML
-    private Label lblHFCT;
-    @FXML
-    private Label lblResDual;
-    @FXML
-    private Label lblResFCT;
-    @FXML
-    private Button btnVolver;
+    private ImageView btnVolver;
     @FXML
     private TableView<Actividades> tablaAlumno;
     @FXML
-    private Label lblNomPerfil;
+    private ImageView lblImagen;
     @FXML
-    private ChoiceBox<String> chEmpresa;
-
-    /**
-     * Initializes the controller class.
-     */
-    
-
-    
-
+    private Label lblDatos;
     @FXML
-    private TextArea txtObservaciones;
-    @FXML
-    private Button btnGuardar;
+    private TableColumn<Actividades, String> cTipo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         Session s = HibernateUtil.getSessionFactory().openSession();
-        
-        Query q = s.createQuery("FROM Empresa");
-        ArrayList<Empresa> empresas = (ArrayList<Empresa>) q.list();
-        empresas.forEach((e) -> chEmpresa.getItems().add(e.getNombre()));
-        
+
         Alumno a = SessionData.getAlumnoActual();
-        if (a != null) {
-            txtObservaciones.setText(a.getObservaciones());
-            chEmpresa.setValue(a.getEmpresaAsignada().getNombre());
-        }
 
         cFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
         cTipo.setCellValueFactory(new PropertyValueFactory("tipo_practica"));
@@ -125,67 +96,58 @@ public class FichaAlumnoController implements Initializable {
             }
         }
 
-        lblNomPerfil.setText(a.getNombre());
+        lblNombre.setText(a.getNombre());
+        lblApellidos.setText(a.getApellidos());
+        lblDNI.setText(a.getDni());
+        lblFechaNac.setText(a.getFecha_nacimiento().toString());
+        lblEmail.setText(a.getEmail());
+        lblTelefono.setText("" + a.getTelefono());
 
-        lblNombre.setText("Nombre: " + a.getNombre());
-        lblApellidos.setText("Apellidos: " + a.getApellidos());
-        lblDNI.setText("DNI: " + a.getDni());
-        lblFechaNac.setText("Nacimiento: " + a.getFecha_nacimiento().toString());
-        lblEmail.setText("Email: " + a.getEmail());
-        lblTelefono.setText("Telefono: " + a.getTelefono());
-        lblEmpresa.setText("Empresa: " + a.getEmpresaAsignada().getNombre());
-        lblTutor.setText("Tutor de empresa: " + a.getProfesor().getNombre());
-        lblHDual.setText("Horas Dual: " + a.getHoras_dual() + " h");
-        lblHFCT.setText("Horas FCT: " + a.getHoras_fct() + " h");
-        lblResDual.setText("Horas restantes Dual: " + (a.getHoras_dual() - totalDual) + " totales.");
-        lblResFCT.setText("Horas restantes FCT: " + (a.getHoras_fct() - totalFCT) + " totales.");
-        
         s.close();
 
-    }
-
-    @FXML
-    private void editar(ActionEvent event) {
-
-        try {
-            App.setRoot("editarAlumno");
-        } catch (IOException ex) {
-            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        añadirHandlers();
 
     }
 
-    @FXML
-    private void volver(ActionEvent event) {
-        try {
-            App.setRoot("profesor");
-        } catch (IOException ex) {
-            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    private void añadirHandlers() {
 
-    @FXML
-    private void guardar(ActionEvent event) {
+        btnVolver.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("profesor");
+                } catch (IOException ex) {
+                    Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        btnEditar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("editarAlumno");
+                } catch (IOException ex) {
+                    Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Alumno a = s.load(Alumno.class, SessionData.getAlumnoActual().getId());
-        Query q = s.createQuery("FROM Empresa WHERE nombre = :n");
-        q.setParameter("n", chEmpresa.getValue());
-        a.setEmpresaAsignada((Empresa) q.list().get(0));
-        
-        a.setObservaciones(txtObservaciones.getText());
-        
-        Transaction tr = s.beginTransaction();
-        s.update(a);
-        tr.commit();
-        s.close();
-        
-        try {
-            App.setRoot("profesor");
-        } catch (IOException ex) {
-            Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        lblDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    App.setRoot("datosEmpresa");
+                } catch (IOException ex) {
+                    Logger.getLogger(FichaAlumnoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+
     }
 
 }

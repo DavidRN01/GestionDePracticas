@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="419.0" prefWidth="260.0" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.PrimaryController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="419.0" prefWidth="260.0" spacing="10.0" styleClass="body" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.PrimaryController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -20,19 +20,19 @@
             <Image url="@../../../imagenes/logo_cesur.png" />
          </image>
       </ImageView>
-      <VBox prefHeight="47.0" prefWidth="220.0">
+      <VBox prefHeight="47.0" prefWidth="220.0" stylesheets="@../../../styles/estilos.css">
          <children>
             <Label text="Email" />
             <TextField fx:id="txtEmail" />
          </children>
       </VBox>
-      <VBox prefHeight="28.0" prefWidth="220.0">
+      <VBox prefHeight="28.0" prefWidth="220.0" stylesheets="@../../../styles/estilos.css">
          <children>
             <Label text="Password" />
             <PasswordField fx:id="txtPassword" />
          </children>
       </VBox>
-      <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #0274BE;" text="Login" textFill="WHITE">
+      <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #0274BE;" stylesheets="@../../../styles/estilos.css" text="Login" textFill="WHITE">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

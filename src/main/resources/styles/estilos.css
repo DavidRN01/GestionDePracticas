@@ -22,3 +22,47 @@
 .colorTarea {
     -fx-background-color:#e3f2fd;
 }
+
+
+.body {
+
+    background-color: #cccccc;
+}
+
+
+.botonAnadir {
+    -fx-background-image:url('file:/C:/Users/diegu/Downloads/add-svgrepo-com.png');
+
+    background-color: #cccccc;
+}
+
+.colorBorde{
+    -fx-background-color:#173a90
+}
+table { 
+    border-collapse:collapse 
+}
+
+.separador{
+    -fx-background-color:#ffc730
+}
+
+
+
+.columna{
+    -fx-background-color:#ffffff;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0 0 10 0;
+    -fx-padding: 0 0 10 0;
+    
+}
+
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}

@@ -1,102 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="893.0" prefWidth="1232.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.AlumnoController">
-    <center>
-        <BorderPane>
-            <top>
-                <FlowPane hgap="200.0" orientation="VERTICAL" prefHeight="201.0" prefWidth="661.0" vgap="10.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label fx:id="lblNombre" text="Nombre: " />
-                        <Label fx:id="lblApellidos" text="Apellidos:" />
-                        <Label fx:id="lblDNI" text="DNI:" />
-                        <Label fx:id="lblNacimiento" text="Fecha de nacimiento:" />
-                        <Label fx:id="lblEmail" text="Email:" />
-                        <Label fx:id="lblTelefono" text="Teléfono:" />
-                        <Label fx:id="lblEmpresa" text="Empresa:" />
-                        <Label fx:id="lblProfesor" text="Tutor asignado:" />
-                        <Label fx:id="lblHorasDual" text="Horas totales Dual: " />
-                        <Label fx:id="lblHorasFCT" text="Horas totales FCT:" />
-                        <Label fx:id="lblRestantesDual" text="Horas restantes Dual:" />
-                        <Label fx:id="lblRestantesFCT" text="Horas restantes FCT:" />
-                    </children>
-                    <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </padding>
-                </FlowPane>
-            </top>
-            <center>
-                <TableView fx:id="tabla" onMouseClicked="#seleccionar" prefHeight="252.0" prefWidth="630.0" BorderPane.alignment="CENTER">
-                    <columns>
-                        <TableColumn fx:id="colFecha" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" text="Fecha" />
-                        <TableColumn fx:id="colTipo" maxWidth="92.0" minWidth="40.0" prefWidth="92.0" text="Tipo" />
-                        <TableColumn fx:id="colHoras" maxWidth="161.0" minWidth="100.0" prefWidth="133.0" text="Horas Totales" />
-                        <TableColumn fx:id="colActividad" minWidth="100.0" prefWidth="163.0" text="Actividad" />
-                        <TableColumn fx:id="colObservaciones" minWidth="100.0" prefWidth="231.0" text="Observaciones" />
-                    </columns>
-                    <columnResizePolicy>
-                        
-                    </columnResizePolicy>
-                </TableView>
-            </center>
-        </BorderPane>
-    </center>
-    <top>
-        <Pane minHeight="82.0" prefHeight="82.0" prefWidth="786.0" styleClass="colorFondoPaneSuperior" stylesheets="@../../../styles/estilos.css" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="79.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../imagenes/logo_cesur.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
-    </top>
-    <left>
-        <BorderPane styleClass="colorFondoPaneIzquierdo" stylesheets="@../../../styles/estilos.css">
-            <center>
-                <VBox alignment="TOP_CENTER" spacing="30.0">
-                    <children>
-                        <Button fx:id="btnNuevaTarea" mnemonicParsing="false" onAction="#nuevaTarea" styleClass="boton" stylesheets="@../../../styles/estilos.css" text="Añadir tarea" />
-                    </children>
-                    <BorderPane.margin>
-                        <Insets />
-                    </BorderPane.margin>
-                    <padding>
-                        <Insets top="20.0" />
-                    </padding>
-                </VBox>
-            </center>
-            <bottom>
-                <Button fx:id="btnSalir" alignment="CENTER" mnemonicParsing="false" onAction="#salir" styleClass="btnSalir" stylesheets="@../../../styles/estilos.css" text="Salir" BorderPane.alignment="CENTER">
-                    <BorderPane.margin>
-                        <Insets bottom="20.0" />
-                    </BorderPane.margin>
-                </Button>
-            </bottom>
-            <top>
-                <VBox alignment="CENTER" prefHeight="137.0" prefWidth="151.0">
-                    <children>
-                        <ImageView fitHeight="95.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../imagenes/user.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="lblNomPerfil" alignment="CENTER" text="Nombre" />
-                    </children>
-                </VBox>
-            </top>
-        </BorderPane>
-    </left>
-</BorderPane>
+<Pane prefHeight="563.0" prefWidth="834.0" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestiondepracticas.AlumnoController">
+   <children>
+      <Pane prefHeight="166.0" prefWidth="834.0" styleClass="colorBorde" stylesheets="@../../../styles/estilos.css">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="251.0" layoutX="29.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/mejor-centro-formacion-profesional-Cesur%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="lblImagen" fitHeight="59.0" fitWidth="44.0" layoutX="29.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/icons8-user-50.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblNombre" alignment="CENTER" layoutX="81.0" layoutY="100.0" prefHeight="17.0" prefWidth="115.0" text="Nombre" textFill="WHITE" />
+            <Label fx:id="lblApellidos" alignment="CENTER" layoutX="81.0" layoutY="122.0" prefHeight="17.0" prefWidth="115.0" text="Apellido" textFill="WHITE" />
+            <Label fx:id="lblDNI" alignment="CENTER" layoutX="81.0" layoutY="144.0" prefHeight="17.0" prefWidth="115.0" text="DNI" textFill="WHITE" />
+            <Pane layoutY="79.0" prefHeight="8.0" prefWidth="834.0" styleClass="separador" stylesheets="@../../../styles/estilos.css" />
+            <Label fx:id="lblNacimiento" alignment="CENTER" layoutX="255.0" layoutY="100.0" prefHeight="17.0" prefWidth="144.0" text="Nacimiento" textFill="WHITE" />
+            <Label fx:id="lblEmail" alignment="CENTER" layoutX="255.0" layoutY="122.0" prefHeight="17.0" prefWidth="144.0" text="Email" textFill="WHITE" />
+            <Label fx:id="lblTelefono" alignment="CENTER" layoutX="255.0" layoutY="144.0" prefHeight="17.0" prefWidth="144.0" text="Telefono" textFill="WHITE" />
+            <Label fx:id="lblDatos" layoutX="553.0" layoutY="96.0" prefHeight="52.0" prefWidth="245.0" text="             Datos de empresa" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="52.0" layoutX="562.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagenes/building-svgrepo-com.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <BorderPane layoutY="166.0" prefHeight="397.0" prefWidth="834.0" styleClass="colorFondo" stylesheets="@../../../styles/estilos.css">
+         <center>
+            <TableView fx:id="tabla" onMouseClicked="#seleccionar" prefHeight="288.0" prefWidth="828.0" stylesheets="@../../../styles/tabla.css" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="colFecha" minWidth="0.0" prefWidth="106.0" text="Fecha" />
+                <TableColumn fx:id="colTipo" minWidth="0.0" prefWidth="108.0" text="Tipo" />
+                  <TableColumn fx:id="colHoras" prefWidth="209.0" text="Horas Totales" />
+                  <TableColumn fx:id="colActividad" prefWidth="212.0" text="Actividad" />
+                  <TableColumn fx:id="colObservaciones" prefWidth="212.0" text="Observaciones" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </center>
+         <bottom>
+            <Pane prefHeight="51.0" prefWidth="834.0" styleClass="colorBorde" stylesheets="@../../../styles/estilos.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="btnSalir" fitHeight="44.0" fitWidth="34.0" layoutX="786.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imagenes/exit-svgrepo-com.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </bottom>
+         <left>
+            <Pane prefHeight="283.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="btnNuevaTarea" fitHeight="34.0" fitWidth="25.0" layoutX="8.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../imagenes/add-svgrepo-com.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </left>
+      </BorderPane>
+   </children>
+</Pane>

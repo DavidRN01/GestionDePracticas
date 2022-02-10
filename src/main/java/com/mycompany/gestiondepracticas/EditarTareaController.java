@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +23,8 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Actividades;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,19 +35,21 @@ import org.hibernate.Transaction;
 public class EditarTareaController implements Initializable {
 
     @FXML
-    private Spinner<Double> horas;
-    @FXML
-    private TextField txtNombreTarea;
+    private TextField horas;
     @FXML
     private TextArea txtObservaciones;
     @FXML
-    private ChoiceBox<String> choiceTipo;
+    private ImageView btnBorrar;
     @FXML
-    private DatePicker dateFecha;
+    private ImageView datosPersonales;
     @FXML
-    private Button btnAceptar;
+    private TextField txtNombre;
     @FXML
-    private Button btnBorrar;
+    private ImageView btnGuardar;
+    @FXML
+    private TextField chooser;
+    @FXML
+    private TextField datePicker;
 
     /**
      * Initializes the controller class.
@@ -54,62 +59,69 @@ public class EditarTareaController implements Initializable {
 
         Actividades a = SessionData.getActividadActual();
         if (a != null) {
-            txtNombreTarea.setText(a.getActividad_realizada());
+            txtNombre.setText(a.getActividad_realizada());
             txtObservaciones.setText(a.getObservaciones());
-            choiceTipo.setValue(a.getTipo_practica());
-            SpinnerValueFactory svf = new DoubleSpinnerValueFactory(0,24,a.getTotal_horas(),0.25);
-            horas.setValueFactory(svf);
-            dateFecha.setValue(a.getFecha());
-     
+            chooser.setText("" + a.getTipo_practica());
+            SpinnerValueFactory svf = new DoubleSpinnerValueFactory(0, 24, a.getTotal_horas(), 0.25);
+            horas.setText("" + a.getTotal_horas());
+            datePicker.setText(""+a.getFecha());
+
         }
+
+        añadirHandlers();
 
     }
 
-    @FXML
-    private void aceptar(ActionEvent event) {
-        
-        //Asigno la actividad que voy a editar
-        Actividades a = SessionData.getActividadActual();
+    private void añadirHandlers() {
 
-        //Le paso los valores de los cajetines de texto
-        a.setObservaciones(txtObservaciones.getText());
-        a.setActividad_realizada(txtNombreTarea.getText());
+        btnGuardar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
+            @Override
+            public void handle(MouseEvent event) {
+                //Asigno la actividad que voy a editar
+                Actividades a = SessionData.getActividadActual();
 
-        //Iniciamos la transacción y la guardamos
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Transaction tr = s.beginTransaction();
-        s.update(a);
-        tr.commit();
-        s.close();
+                //Le paso los valores de los cajetines de texto
+                a.setObservaciones(txtObservaciones.getText());
+                a.setActividad_realizada(txtNombre.getText());
 
-        try {
-            App.setRoot("alumno");
-        } catch (IOException ex) {
-            Logger.getLogger(NuevaTareaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
+                //Iniciamos la transacción y la guardamos
+                Session s = HibernateUtil.getSessionFactory().openSession();
+                Transaction tr = s.beginTransaction();
+                s.update(a);
+                tr.commit();
+                s.close();
 
-    @FXML
-    private void borrar(ActionEvent event) {
-        
-        //Asigno la actividad que voy a borrar
-        Actividades a = SessionData.getActividadActual();
-        
-        //Iniciamos la transacción y la borramos
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        Transaction tr = s.beginTransaction();
-        s.remove(a);
-        tr.commit();
-        s.close();
-        
-        try {
-            App.setRoot("alumno");
-        } catch (IOException ex) {
-            Logger.getLogger(NuevaTareaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+                try {
+                    App.setRoot("alumno");
+                } catch (IOException ex) {
+                    Logger.getLogger(NuevaTareaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        btnBorrar.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                //Asigno la actividad que voy a borrar
+                Actividades a = SessionData.getActividadActual();
+
+                //Iniciamos la transacción y la borramos
+                Session s = HibernateUtil.getSessionFactory().openSession();
+                Transaction tr = s.beginTransaction();
+                s.remove(a);
+                tr.commit();
+                s.close();
+
+                try {
+                    App.setRoot("alumno");
+                } catch (IOException ex) {
+                    Logger.getLogger(NuevaTareaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
 
 }
