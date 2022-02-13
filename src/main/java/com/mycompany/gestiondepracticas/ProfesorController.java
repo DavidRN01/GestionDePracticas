@@ -74,9 +74,13 @@ public class ProfesorController implements Initializable {
 
         Session s = HibernateUtil.getSessionFactory().openSession();
         Profesor p = s.load(Profesor.class, SessionData.getProfesorActual().getId());
+        
+        Query q = s.createQuery("FROM Alumno al WHERE al.profesor.id = :id");
+        q.setParameter("id", p.getId());
+        
         SessionData.setProfesorActual(p);
 
-        contenido.addAll(p.getAlumnos());
+        contenido.addAll(q.list());
 
         labelNombre.setText(p.getNombre());
         labelApellidos.setText(p.getApellidos());
